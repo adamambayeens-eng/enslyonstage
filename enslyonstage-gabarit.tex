@@ -1,0 +1,300 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  main.tex — ENS de Lyon Biosciences internship report (blank template)
+%
+%  → Fill in the fields below, then write your sections.
+%  → For a full worked example, see  example_report.tex
+%
+%  On Overleaf: this file is detected automatically as the root document.
+%  Locally: pdflatex main.tex  →  biber main  →  pdflatex
+%
+%  Project structure:
+%    main.tex             ← this file  (fill in and compile)
+%    example_report.tex   ← full worked example (for reference)
+%    enslyonstage.cls     ← class file (same directory or on TEXMFHOME)
+%    references.bib       ← BibTeX bibliography
+%    figures/             ← images (jpg, pdf, png, eps …)
+%    logos/               ← hautdepage.pdf  basdepage.pdf  Master.jpg
+%                            logo_ens.pdf  (+ logo_labo.* optional)
+%
+%  Final PDF file name (ENS requirement):
+%    LastName-FirstName-ENS-M1.pdf   or   LastName-FirstName-ENS-M2.pdf
+%
+% ═══════════════════════════════════════════════════════════════════════════
+%  ENS DE LYON — OFFICIAL GUIDELINES  (keep these comments during writing)
+% ═══════════════════════════════════════════════════════════════════════════
+%  FORMAT
+%    ✓ Written in English
+%    ✓ Two-column layout (this class)        ✓ Pages numbered (automatic)
+%    ✓ PDF, preferably < 4–5 MB
+%    ✓ File name: "LastName-FirstName - ENS-M1.pdf"  or  "...-M2.pdf"
+%    ✗ No supplemental data / annexes
+%      (exceptions: contact stages.biosciences@ens-lyon.fr)
+%
+%  LENGTH & DISPLAY ITEMS
+%    M1 : ≤ 5 000 words (± 10 %)   ≤ 6 figures + tables
+%    M2 : ≤ 4 000 words (± 10 %)   ≤ 5 figures + tables
+%    → word count excludes references and figure/table legends
+%    → on Overleaf: Menu → Word Count  (uses the %TC: directives in the class)
+%
+%  TITLE     ≤ 125 characters including spaces
+%  ABSTRACT  150–200 words · English · NO references
+%  REFS      ≤ 35 publications · PNAS (new) numbered style [1],[2]…
+%            Unpublished data / personal comm.: in-text only, NOT in ref list
+%
+%  STYLE
+%    • Spell out 1–9 unless with units  ("three replicates" / "3 µm", "5 mM")
+%    • Units: metric, negative exponents  (µmol m⁻² s⁻¹  NOT  µmol/m²/s)
+%    • Gene names: italics  —  Protein names: roman  (follow field conventions)
+%    • Abbreviations: define at first use, keep to a minimum
+%    • Stats: specify test, n, and exact p-value for every numerical result
+% ═══════════════════════════════════════════════════════════════════════════
+
+% ── THEME ──────────────────────────────────────────────────────────────────
+% Available (22): orange (default) · violet · blue · red · green · teal · gray
+%                 navy · azure · indigo · midnight · slate · purple · pink
+%                 crimson · wine · amber · gold · brown · lime · forest · cyan
+\documentclass[orange]{enslyonstage}
+
+% ── BIBLIOGRAPHY ───────────────────────────────────────────────────────────
+% biblatex is compiled with biber (automatic on Overleaf)
+\addbibresource{references.bib}
+
+% ── HYPHENATION (optional) ─────────────────────────────────────────────────
+% Add words that LaTeX hyphenates badly; use - to mark allowed break points.
+% Example: \hyphenation{hy-phen-a-tion quad-ru-pe-dal}
+%\hyphenation{}
+
+% ── CUSTOM UNIT SHORTCUTS (optional) ───────────────────────────────────────
+% Define frequently-used units as shortcuts to save typing.
+% Add your own following the same pattern.
+\newcommand{\um}{\si{\micro\metre}}       % \um   → µm
+\newcommand{\uM}{\si{\micro\Molar}}       % \uM   → µM
+\newcommand{\degC}{\si{\degreeCelsius}}   % \degC → °C
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  METADATA  —  fill in every field below
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% ── TITLE ──────────────────────────────────────────────────────────────────
+% ENS requirement: maximum 125 characters including spaces.
+% To force a line break in the title without breaking PDF metadata, use:
+%   \titre{First part:\texorpdfstring{\\}{ }Second part}
+\titre{}
+
+% ── AUTHOR ─────────────────────────────────────────────────────────────────
+% Use \textsc{} for small caps on last name: Firstname \textsc{Lastname}
+\auteur{\textsc{}}
+
+% ── DEGREE LEVEL ───────────────────────────────────────────────────────────
+% Enter "M1" or "M2" (without "Biosciences" — added automatically)
+\master{M}
+
+% ── BIOLOGICAL DOMAIN ──────────────────────────────────────────────────────
+% Shown on cover page and in footer.
+% Examples: Molecular and Cellular Biology, Neurosciences, Ecology, etc.
+\domaine{}
+
+% ── INTERNSHIP DATES ───────────────────────────────────────────────────────
+% Format: DD Month YYYY (e.g., 02 February 2025)
+\datedebut{}
+\datefin{}
+
+% ── LABORATORY ─────────────────────────────────────────────────────────────
+% Full laboratory name, institute, and location.
+% Example: Lab Name, Institute Name, CNRS UMR XXXX, City
+\laboratoire{%
+
+    }
+
+% ── SUPERVISORS ────────────────────────────────────────────────────────────
+% Lab supervisor (internship mentor) — name and email
+\tuteurstage{\textsc{}}{}
+% ENS academic supervisor — name and email
+\tuteurENS{\textsc{}}{}
+
+% ── ABSTRACT ───────────────────────────────────────────────────────────────
+% ENS requirements:
+%   - 150–200 words (single paragraph)
+%   - English language
+%   - NO literature references
+%   - Include: (1) brief background and question, (2) main results without
+%     extensive detail, (3) summary of significance
+%   - Keep accessible to non-specialists
+%
+% Word count: the abstract is NOT counted toward the ENS word limit.
+% (This is handled automatically by the %TC: directives in enslyonstage.cls.)
+\abstracts{%
+
+}
+
+% ── KEYWORDS ───────────────────────────────────────────────────────────────
+% ENS guideline: 5 to 8 keywords, comma-separated
+\keywords{}
+
+% ── WORD COUNT ─────────────────────────────────────────────────────────────
+% ENS limits: M1 ≤ 5000 words (±10%)  /  M2 ≤ 4000 words (±10%)
+% Count excludes abstract, references, and figure/table legends.
+%
+% On Overleaf: Menu → Word Count
+%   The class automatically excludes figure captions and table environments
+%   via %TC: directives — no extra setup needed.
+%
+% Locally: texcount -sum -1 main.tex
+%
+% Update the number below before each submission:
+\nombredemots{}
+
+% ── PREVIOUS INTERNSHIPS ───────────────────────────────────────────────────
+% Table of previous internships shown on cover page.
+% Use \stagerow{Year}{Lab, City, Country}{Supervisor}{Topic}
+% Leave cells empty for levels not yet completed.
+\stagesanterieurs{
+	\stagerow{L3}{}{\textsc{}}{}
+	\stagerow{M1}{}{\textsc{}}{}
+	\stagerow{M2}{}{\textsc{}}{}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  LOGOS  —  place files in the logos/ directory
+%  The cover page uses hautdepage.pdf and basdepage.pdf automatically.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% ── ENS LOGO — displayed in footer center (automatic)
+\logoENS[1.5cm]{logos/logo_ens.pdf}
+
+% ── MASTER LOGO — kept for compatibility
+\logoformation[2cm]{logos/Master.jpg}
+
+% ── LABORATORY LOGO — shown on cover page (optional, remove if not needed)
+% \logoLabo[2.5cm]{logos/logo_labo.pdf}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  HEADER / FOOTER CUSTOMIZATION (optional)
+%  Defaults work well for most reports — uncomment only if needed.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Default layout:
+%   top-left  : current section name (\leftmark)
+%   top-right : title wrapped at 0.6\linewidth
+%   bot-left  : \domaine in small caps
+%   bot-centre: \logoENS at 8mm (below footer rule)
+%   bot-right : page/total
+
+%\coinhautgauche{custom text}
+%\coinhautdroit{custom text}
+%\coinbasgauche{custom text}
+%\coinbascentre{\includegraphics[height=8mm]{logos/custom.pdf}}
+%\coinbasdroit{custom text}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% ── COVER PAGE — generates ENS cover, then switches to two-column mode
+\fairepagedegarde
+
+% ── ABSTRACT BOX — full-width colored box; must follow \fairepagedegarde
+\faireabstract
+
+% ── TABLE OF CONTENTS — optional; remove if your tutor does not require it
+%\tableofcontents
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Introduction}
+\label{sec:intro}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ENS requirements:
+%   - Background with MORE detail than a journal paper
+%   - Understandable to non-specialists
+%   - End with a clear statement of the question(s) addressed
+%   - Define non-standard abbreviations at first use
+%
+% TIP — drop cap on the opening letter:
+%   \lettrine[lines=3]{T}{he} context of this study...
+%   (lettrine is already loaded by enslyonstage.cls)
+
+\paragraph{}
+
+
+% \newpage   ← uncomment to force a column/page break if needed
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Materials and Methods}
+\label{sec:methods}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ENS requirements:
+%   - Sufficient detail to allow repetition
+%   - Standard procedures may be referenced
+%   - Statistical tests: name, n, and exact p-value for every result
+%
+% Use \paragraph{Heading.} for each experimental approach.
+
+\paragraph{}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Results}
+\label{sec:results}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ENS requirements:
+%   - Findings presented clearly and succinctly
+%   - Concise summary of data in ALL display items
+%   - Display item limits: M1 ≤ 6 figures+tables  /  M2 ≤ 5 figures+tables
+%   - Legends must be self-sufficient
+%
+% Figure insertion:
+%   \insererfigure[options]{filepath}{caption text}{fig:label}
+%   Options: col (single-column)  p (full-page)  b (bottom)
+%            h=<dim> (height)     w=<dim> (width)
+%   Default: double-column, h=0.33\textheight
+%   See example_report.tex for worked examples of every option.
+%
+% Multi-reference coloured cross-reference (cleveref, already loaded):
+%   \crefcolor{fig:a,fig:b}   → coloured "Figs. 1 and 2"
+%   Do NOT add \usepackage{cleveref} — it is already loaded by the class.
+
+\subsection{}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Discussion}
+\label{sec:discussion}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ENS requirements:
+%   - Significance of results in broad biological context
+%   - Critical evaluation — do NOT oversell
+%   - Shortcomings and how they could be addressed
+%   - 2–3 concrete follow-up experiments
+%
+% This is NOT a journal manuscript — show your capacity to critically
+% discuss your work, including negative results and limitations.
+
+\paragraph{}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Author Contributions}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ENS requirement (mandatory):
+%   - Your personal contribution (which experiments/analyses you did)
+%   - Role of EVERY person who participated in your work
+%
+% Format: "F.L. designed and performed experiments X and Y;
+%          J.S. conceived the project and supervised the internship."
+
+\paragraph{}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Acknowledgements}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Optional — thank people not listed in Author Contributions
+% (technical staff, facility managers, funding sources, etc.)
+
+This report was typeset using a custom \LaTeX{} class developed for ENS de Lyon Biosciences internship reports.
+
+%--- Bibliography — ≤ 35 references (ENS guideline) --------------------------
+% Balance columns on the final page (cleaner last page)
+\balance
+\biblio
+
+\end{document}

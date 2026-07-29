@@ -1,0 +1,51 @@
+The LaTeX Project Public License
+=================================
+LPPL Version 1.3c  2008-05-04
+
+Copyright (C) 2025 Adama Mbaye
+
+Everyone is permitted to copy and distribute verbatim copies of this
+license document, but changing it is not allowed.
+
+PREAMBLE
+========
+The LaTeX Project Public License (LPPL) is the primary license under
+which the LaTeX kernel and the base LaTeX packages are distributed.
+
+You may use this software and refer to it by name in documents without
+restriction. If you wish to modify it, distribute it, or make it
+available as part of a product, you must respect the conditions
+specified below.
+
+In this license document:
+  "The Work"     refers to any files distributed as part of this package.
+  "The Author"   refers to the person(s) who produced the Work.
+  "You"          refers to the user of this license.
+
+GRANT OF RIGHTS
+===============
+Permission is granted to distribute and use copies of the Work and to
+produce modified versions of the Work, subject to the following
+conditions:
+
+1. Activities other than distribution and/or modification of the Work
+   are not covered by this license; they are outside its scope.
+
+2. You may, without restriction, read and compile the Work for your
+   own use.
+
+3. You may distribute a complete, unmodified copy of the Work.
+
+4. You may distribute a copy of the Work with modifications ONLY if:
+   a) you rename any modified files so they are not confused with the
+      original Work,
+   b) you clearly identify your changes,
+   c) the resulting work is distributed under this same license.
+
+NO WARRANTY
+===========
+There is no warranty for the Work. The Author provides the Work "as
+is" without warranty of any kind.
+
+For the full text of LPPL 1.3c, see:
+https://www.latex-project.org/lppl/lppl-1-3c/

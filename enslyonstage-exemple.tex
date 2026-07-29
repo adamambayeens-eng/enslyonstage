@@ -1,0 +1,659 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  example_report.tex — FULL EXAMPLE of a completed ENS internship report
+%
+%  ⚠  This file is for REFERENCE only.
+%     To write your own report, open and edit  main.tex  instead.
+%     Copy-paste sections from here as needed.
+%
+%  Uses the enslyonstage.cls class
+%
+%  Project structure:
+%    main.tex             ← YOUR blank template (start here)
+%    example_report.tex   ← this file (full worked example)
+%    enslyonstage.cls     ← class file (same directory or on TEXMFHOME)
+%    references.bib       ← BibTeX bibliography
+%    figures/             ← images (jpg, pdf, png, eps …)
+%    logos/               ← hautdepage.pdf  basdepage.pdf  Master.jpg
+%                            logo_ens.pdf  (+ logo_labo.* optional)
+%
+%  Compile order:
+%    pdflatex example_report.tex  →  biber example_report  →  pdflatex
+%  On Overleaf: compilation is automatic (biber is used by default).
+%
+%  Final PDF file name (ENS requirement):
+%    LastName-FirstName-ENS-M1.pdf   or   LastName-FirstName-ENS-M2.pdf
+%
+% ═══════════════════════════════════════════════════════════════════════════
+%  ENS DE LYON — OFFICIAL GUIDELINES  (keep these comments during writing)
+% ═══════════════════════════════════════════════════════════════════════════
+%  FORMAT
+%    ✓ Written in English
+%    ✓ Two-column layout (this class)        ✓ Pages numbered (automatic)
+%    ✓ PDF, preferably < 4–5 MB
+%    ✓ File name: "LastName-FirstName - ENS-M1.pdf"  or  "...-M2.pdf"
+%    ✗ No supplemental data / annexes
+%      (exceptions: contact stages.biosciences@ens-lyon.fr)
+%
+%  LENGTH & DISPLAY ITEMS
+%    M1 : ≤ 5 000 words (± 10 %)   ≤ 6 figures + tables
+%    M2 : ≤ 4 000 words (± 10 %)   ≤ 5 figures + tables
+%    → word count excludes references and figure/table legends
+%    → on Overleaf: Menu → Word Count  (uses the %TC: directives in the class)
+%
+%  TITLE     ≤ 125 characters including spaces
+%  ABSTRACT  150–200 words · English · NO references
+%  REFS      ≤ 35 publications · PNAS (new) numbered style [1],[2]…
+%            Unpublished data / personal comm.: in-text only, NOT in ref list
+%
+%  STYLE
+%    • Spell out 1–9 unless with units  ("three replicates" / "3 µm", "5 mM")
+%    • Units: metric, negative exponents  (µmol m⁻² s⁻¹  NOT  µmol/m²/s)
+%    • Gene names: italics  —  Protein names: roman  (follow field conventions)
+%    • Abbreviations: define at first use, keep to a minimum
+%    • Stats: specify test, n, and exact p-value for every numerical result
+% ═══════════════════════════════════════════════════════════════════════════
+
+% ── THEME ──────────────────────────────────────────────────────────────────
+% Available (22): orange (default) · violet · blue · red · green · teal · gray
+%                 navy · azure · indigo · midnight · slate · purple · pink
+%                 crimson · wine · amber · gold · brown · lime · forest · cyan
+\documentclass[orange]{enslyonstage}
+
+% ── BIBLIOGRAPHY ───────────────────────────────────────────────────────────
+% Bibliography resource (biblatex — compiled with biber, automatic in Overleaf)
+% Create a references.bib file with your citations
+\addbibresource{references.bib}
+
+% ── CUSTOM SHORTCUTS ───────────────────────────────────────────────────────
+% Define frequently-used units as shortcuts to save typing
+\newcommand{\um}{\si{\micro\metre}}       % \um   → µm
+\newcommand{\uM}{\si{\micro\Molar}}       % \uM   → µM
+\newcommand{\degC}{\si{\degreeCelsius}}   % \degC → °C
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  METADATA
+%  Fill in your report information below. These commands populate the cover
+%  page, headers, footers, and PDF metadata.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% ── TITLE ──────────────────────────────────────────────────────────────────
+% ENS requirement: maximum 125 characters including spaces
+% Should capture the conceptual significance for a broad audience
+%
+% TIP — title with a line break: use \texorpdfstring so hyperref metadata
+% (PDF title, bookmarks) still receives a plain-text version:
+%   \titre{First Part:\texorpdfstring{\\}{ }Second Part of the Title}
+%
+\titre{Characterisation of a Novel Protein Complex Involved in Post-Transcriptional
+	Regulation During Cellular Stress Response}
+
+% ── AUTHOR ─────────────────────────────────────────────────────────────────
+% Your name as it should appear on the cover page
+% Use \textsc{} for small caps on last name
+\auteur{Firstname \textsc{Lastname}}
+
+% ── DEGREE LEVEL ───────────────────────────────────────────────────────────
+% Enter either "M1" or "M2" (without "Biosciences" — added automatically)
+\master{M1}
+
+% ── BIOLOGICAL DOMAIN ──────────────────────────────────────────────────────
+% Shown on cover page and in footer
+% Examples: Molecular and Cellular Biology, Neurosciences, Ecology, etc.
+\domaine{Molecular and Cellular Biology}
+
+% ── INTERNSHIP DATES ───────────────────────────────────────────────────────
+% Format: DD Month YYYY (e.g., 02 February 2025)
+\datedebut{02 February 2025}
+\datefin{30 June 2025}
+
+% ── LABORATORY ─────────────────────────────────────────────────────────────
+% Laboratory name and/or institute
+% Example: Lab Name, Institute Name, CNRS UMR XXXX, City
+\laboratoire{
+    Laboratory of RNA Biology,
+    Montpellier, France
+    }
+
+% ── SUPERVISORS ────────────────────────────────────────────────────────────
+% Lab supervisor (internship mentor) — name and email
+\tuteurstage{Dr. Jane Smith}{} % No email in the official
+% ENS academic supervisor — name and email
+\tuteurENS{Prof. Jean Dupont}{jean.dupont@ens-lyon.fr} % not shown
+
+% ── ABSTRACT ───────────────────────────────────────────────────────────────
+% ENS requirements:
+%   - 150–200 words (single paragraph)
+%   - English language
+%   - NO literature references
+%   - Include: (1) brief background and question, (2) main results without
+%     extensive detail, (3) summary of significance
+%   - Keep accessible to non-specialists
+\abstracts{%
+	Write your abstract here. Single paragraph, 150–200 words, English.
+	No literature references permitted. Include: (1)~brief biological background
+	and question addressed, (2)~description of main results without extensive
+	experimental detail, (3)~summary of significance. Keep language accessible
+	to non-specialists.
+	\lipsum[1][1-5]
+	% ── VISUAL ABSTRACT (optional) ─────────────────────────────────────────
+	% Place a graphical abstract (figure, scheme, workflow…) below the text.
+	% The optional argument sets the width (default: 0.9\textwidth).
+	% Use any image format accepted by \includegraphics.
+	\abstractimage[0.5\textwidth]{example-image}
+}
+
+% ── KEYWORDS ───────────────────────────────────────────────────────────────
+% ENS guideline: 5 to 8 keywords
+% Comma-separated list of key terms for your work
+\keywords{RNA-binding proteins, stress granules, post-transcriptional regulation,
+	proteomics, yeast two-hybrid}
+
+% ── WORD COUNT ─────────────────────────────────────────────────────────────
+% ENS limits: M1 ≤ 5000 words (±10%)  /  M2 ≤ 4000 words (±10%)
+% Count excludes references and figure/table legends
+% On Overleaf: Menu → Word Count  (the %TC: directives in enslyonstage.cls
+%              automatically exclude figure captions and table environments)
+% Locally:  texcount -sum -1 example_report.tex
+\nombredemots{6 767}
+
+% ── PREVIOUS INTERNSHIPS ───────────────────────────────────────────────────
+% Table of previous internships shown on cover page
+% Use \stagerow{Year}{Lab, City, Country}{Supervisor}{Topic}
+% Leave empty fields for levels not yet completed (e.g., M2 if you're in M1)
+\stagesanterieurs{
+	\stagerow{L3}{Lab name, City, Country}{Dr.\ Firstname \textsc{Lastname}}{Biological topic}
+	\stagerow{M1}{Lab name, City, Country}{Dr.\ Firstname \textsc{Lastname}}{Biological topic}
+	\stagerow{M2}{}{}{}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  LOGOS
+%  Place logo files in the logos/ directory.
+%  Cover page automatically uses hautdepage.pdf and basdepage.pdf.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% ── ENS LOGO ───────────────────────────────────────────────────────────────
+% Displayed in footer center at 8mm height (automatic)
+% Optional height argument: \logoENS[height]{filepath}
+\logoENS[1.5cm]{logos/logo_ens.pdf}
+
+% ── MASTER LOGO ────────────────────────────────────────────────────────────
+% Kept for compatibility, not shown in footer if \logoENS is set
+\logoformation[2cm]{logos/Master.jpg}
+
+% ── LABORATORY LOGO ────────────────────────────────────────────────────────
+% Shown on cover page between domain and info block (optional)
+% Remove or comment out if not needed
+\logoLabo[3cm]{example-image}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  HEADER / FOOTER CUSTOMIZATION (optional)
+%  Defaults are set in enslyonstage.cls and work well for most reports.
+%  Uncomment and modify only if you need custom headers/footers.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Default layout:
+%   top-left  : current section name (\leftmark)
+%   top-right : title wrapped at 0.6\linewidth
+%   bot-left  : \domaine in small caps
+%   bot-centre: \logoENS at 8mm (positioned below footer rule)
+%   bot-right : page/total
+
+%\coinhautgauche{custom text}
+%\coinhautdroit{custom text}
+%\coinbasgauche{custom text}
+%\coinbascentre{\includegraphics[height=8mm]{logos/custom.pdf}}
+%\coinbasdroit{custom text}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% ── COVER PAGE ─────────────────────────────────────────────────────────────
+% Generates official ENS cover page with all metadata
+% Automatically switches to two-column mode after cover
+\fairepagedegarde
+
+% ── ABSTRACT BOX ───────────────────────────────────────────────────────────
+% Displays abstract in full-width colored box at top of page 1
+% Must be called immediately after \fairepagedegarde
+\faireabstract
+
+% ── TABLE OF CONTENTS ──────────────────────────────────────────────────────
+% Optional — remove if not required by your tutor
+% Shows sections, subsections, and subsubsections
+\tableofcontents
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Introduction}
+\label{sec:intro}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ENS requirements for Introduction:
+%   - Provide background information to place subject in general biological
+%     context with MORE detail than a standard journal paper
+%   - Must be understandable to non-specialists
+%   - End with clear statement of the question(s) addressed in the report
+%   - Define non-standard abbreviations at first use
+
+% TIP — drop cap on the first letter of the introduction:
+%   \lettrine[lines=3]{T}{he} context of this study...
+%   The lettrine package is already loaded by enslyonstage.cls.
+\paragraph{}
+\lipsum[1-4]
+
+% \newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Materials and Methods}
+\label{sec:methods}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ENS requirements for Materials and Methods:
+%   - Include sufficient detail to allow procedures to be repeated
+%   - Standard procedures may be referenced rather than fully described
+%   - Statistical tests: specify test name, sample size (n), and exact p-value
+%
+% Organize with \paragraph{} headings for each experimental approach
+
+\paragraph{Cell culture and strains.}
+\lipsum[1][1-4]
+
+\paragraph{Plasmid construction.}
+\lipsum[2][1-4]
+
+\paragraph{Protein extraction and western blotting.}
+\lipsum[3][1-4]
+
+\paragraph{Co-immunoprecipitation.}
+\lipsum[4][1-4]
+
+\paragraph{Mass spectrometry.}
+\lipsum[5][1-4]
+
+\paragraph{Statistical analysis.}
+% ENS requirement: specify test, sample size n, and exact p-value for each result
+\lipsum[6][1-4]
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Results}
+\label{sec:results}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ENS requirements for Results:
+%   - Present findings clearly and succinctly
+%   - Provide concise summary of data in ALL display items (figures and tables)
+%   - Subheadings encouraged to organize content
+%   - Display item limits: M1 ≤ 6 figures+tables  /  M2 ≤ 5 figures+tables
+%
+% Figure placement tips:
+%   - Include figures as small as possible without compromising clarity
+%   - Use \FloatBarrier after each subsection to control figure placement
+%   - Legends must be self-sufficient (understandable without reading main text)
+
+\paragraph{}
+\lipsum[1]
+
+%-----------------------------------------------------------------------------
+%  FIGURE INSERTION — \insererfigure
+%  Usage: \insererfigure[options]{filepath}{caption}{label}
+%
+%  Options (comma-separated, all optional):
+%    col     — single-column figure, width=\linewidth
+%    p       — full-page float [p], figure alone on its page
+%    b       — double-column figure, prefer bottom placement [!hb]
+%    h=<dim> — custom image height (default 0.33\textheight)
+%    w=<dim> — custom image width (overrides h)
+%
+%  Default (no options): double-column figure [!htb], h=0.33\textheight
+%
+%  Examples:
+%    \insererfigure{file.png}{Caption text}{fig:label}
+%       → double-column, default height
+%    \insererfigure[col]{file.png}{Caption}{fig:label}
+%       → single-column, width=\linewidth
+%    \insererfigure[w=0.6\textwidth]{file.png}{Caption}{fig:label}
+%       → double-column, custom width
+%    \insererfigure[p,w=0.85\textwidth]{file.png}{Caption}{fig:label}
+%       → full-page float
+%-----------------------------------------------------------------------------
+
+
+\subsection{Identification of interaction partners}
+
+% Figure 1 — double column (default, spans both columns)
+% ENS guideline: include figures as small as possible without losing clarity
+% Legend must be self-sufficient (no need to read the main text to understand it)
+\insererfigure[w=0.6\textwidth]%
+{example-image}%
+{\textbf{Identification of proteins co-purifying with the bait.}
+	(\textbf{A})~Schematic of the pull-down strategy.
+	(\textbf{B})~Volcano plot ($n = 3$ biological replicates); dashed lines:
+	$p < 0.05$ and fold-change $\geq 2$ (log$_2$ scale).
+	(\textbf{C})~Validation by co-IP; Input~(I), flow-through~(FT), eluate~(E).
+	Scale bar~= 10\,\um. Data are mean~$\pm$~SD.
+	See also \autoref{fig:network}.}%
+{fig:pulldown}
+
+\lipsum[2-5]
+
+\FloatBarrier
+
+\subsection{Functional validation}
+
+% Figure 2 — single column
+% Use [col] option to fit figure within one column
+\insererfigure[col]%
+{example-image}%
+{\textbf{Co-immunoprecipitation confirms the interaction \textit{in vivo}.}
+	Input~(I), flow-through~(FT) and eluate~(E) are shown.
+	Molecular weight markers (kDa) on the left.
+	Three independent experiments gave similar results\cite{Vincent2020}.}%
+{fig:coip}
+
+\lipsum[6-7]
+
+\FloatBarrier
+
+% Figure 3 — single column, custom height
+\insererfigure[col,h=0.28\textheight]%
+{example-image}%
+{\textbf{Stress-induced relocalization of the complex.}
+	Confocal images of GFP-tagged bait under basal conditions (left) and
+	after \SI{30}{\minute} treatment with \SI{1}{\milli\Molar}~\ce{H2O2} (right).
+	Scale bar~= \SI{5}{\micro\metre}. $n > 100$ cells per condition,
+	$p < 0.001$, Mann–Whitney $U$-test\cite{Journo2021}.}%
+{fig:localisation}
+
+\lipsum[8]
+
+\FloatBarrier
+
+\subsection{Structural characterisation}
+
+% Figure 4 — full page
+% [p] creates a dedicated float page with the figure alone
+% Useful for large, detailed figures
+\insererfigure[p,w=0.85\textwidth]%
+{example-image}%
+{\textbf{Interaction network of the identified complex.}
+	Nodes: proteins coloured by functional category.
+	Edge thickness: interaction score.
+	Outlined nodes: validated by $\geq 2$ independent methods.
+	$K_d = \SI{8.5e-9}{\Molar}$ (SPR, $n = 3$)\cite{Trizac2019}.
+	Visualised with Cytoscape~3.9.}%
+{fig:network}
+
+\lipsum[9-10]
+
+%-----------------------------------------------------------------------------
+%  TABLE — full-width (table*) and single-column (table)
+%
+%  Caption placement: ABOVE the tabular (biology convention)
+%  table*  — spans both columns (same as double-column figures)
+%  table   — single column
+%
+%  ENS display item limit: M1 ≤ 6 figures+tables  /  M2 ≤ 5 figures+tables
+%    → tables and figures share the same quota
+%-----------------------------------------------------------------------------
+
+\begin{table*}[!htb]
+  \centering
+  \caption{\textbf{Summary of identified interaction partners.}
+    Proteins co-purifying with the bait identified by mass spectrometry
+    ($n = 3$ biological replicates). Enrichment is expressed as log$_2$
+    fold-change (FC) over the control. $p$-values corrected by
+    Benjamini–Hochberg. nd, not detected in control.}
+  \label{tab:partners}
+  \small
+  \begin{tabular}{llccc}
+    \toprule
+    \textbf{Protein} & \textbf{Function} & \textbf{log$_2$ FC} & \textbf{Adj.\ $p$-value} & \textbf{Validation} \\
+    \midrule
+    ProteinA  & RNA-binding          & 4.2 & \num{1.3e-4} & co-IP, Y2H \\
+    ProteinB  & Stress granule       & 3.8 & \num{2.1e-4} & co-IP      \\
+    ProteinC  & Translation factor   & 2.9 & \num{8.3e-3} & Y2H        \\
+    ProteinD  & mRNA decay           & 2.4 & \num{1.2e-2} & ---         \\
+    ProteinE  & Scaffold/unknown     & 1.8 & \num{4.5e-2} & ---         \\
+    \bottomrule
+  \end{tabular}
+\end{table*}
+
+\FloatBarrier
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Discussion}
+\label{sec:discussion}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ENS requirements for Discussion:
+%   - Explain significance of results (broad biological context)
+%   - Critical evaluation of results — do NOT oversell
+%   - Discuss shortcomings and how they could be addressed
+%   - Propose 2–3 concrete follow-up experiments
+%
+% This is NOT a journal manuscript — show your capacity to discuss and
+% defend your work, including negative results and limitations
+
+\paragraph{}
+\lipsum[12-14]
+
+\begin{table}[!htb]
+  \centering
+  \caption{\textbf{Strains used in this study.}
+    All strains are \textit{S.~cerevisiae} BY4741 background unless
+    otherwise stated.}
+  \label{tab:strains}
+  \small
+  \begin{tabular}{lcc}
+    \toprule
+    \textbf{Name} & \textbf{Genotype} & \textbf{Source} \\
+    \midrule
+    BY4741   & \textit{MATa his3$\Delta$1 leu2$\Delta$0} & \citeauthor{Vincent2020}, \citeyear{Vincent2020} \\
+    yFL001   & BY4741 \textit{protA-GFP::HIS3}           & This study         \\
+    yFL002   & BY4741 \textit{$\Delta$protB::KanMX}      & This study         \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\TODO{Discuss limitations and propose follow-up experiments.}
+
+% ── LaTeX reference examples (DELETE before submission) ─────────────────────
+\subsection*{LaTeX reference examples (delete before submission)}
+
+Below are live examples of every useful construct for a biology report.
+Delete this entire subsection before submitting.
+
+\paragraph{Units (siunitx).}
+
+Speed: \SI{30}{\centi\metre\per\second} or \SI{30}{cm.s^{-1}}
+
+Cell diameter: \SI{10}{\micro\metre} (or 10\,\um).
+
+Protein concentration: \SI{200}{\micro\gram\per\milli\litre}.
+
+Reaction temperature: \SI{37}{\degreeCelsius} (or 37\,\degC).
+
+Centrifugation: \SI{1500}{\rpm} for \SI{10}{\minute} at \SI{4}{\degC}.
+% Note: \rpm is declared in enslyonstage.cls via \DeclareSIUnit{\rpm}{rpm}
+
+Wavelength: \SI{280}{\nano\metre} or \SI{280}{nm}.
+
+Molarity: \SI{5}{\milli\Molar} NaCl, \SI{2}{\micro\Molar} inhibitor (\uM).
+
+Range: \SIrange{50}{100}{\micro\litre}.
+
+\paragraph{Scientific notation.}
+
+Avogadro: \num{6.022e23}.
+
+Boltzmann: \num{1.38e-23}~J$\cdot$K$^{-1}$.
+
+Dissociation constant: $K_d = \SI{8.5e-9}{\Molar}$.
+
+Fold enrichment: \num{3.2}-fold increase.
+
+\paragraph{Chemical formulae (mhchem).}
+
+\begin{enumerate}
+	\item Hydrogen peroxide: \ce{H2O2}
+	\item Energy currency: \ce{ATP -> ADP + Pi}
+	\item Redox: \ce{NAD+ + H+ + 2e- -> NADH}
+	\item Ion: \ce{Ca^2+}, \ce{Mg^2+}
+	\item Radioisotope label: \ce{^{32}P}
+	\item Buffer: \SI{50}{\milli\Molar} \ce{NaH2PO4}, pH~7.4
+\end{enumerate}
+
+\paragraph{Statistics.}
+
+\begin{itemize}
+	\item All data are mean~$\pm$~SD ($n = 3$ biological replicates) unless stated
+	otherwise. Unpaired two-tailed Student's $t$-test: $p = 0.021$.
+	\item One-way ANOVA: $F(2,12) = 8.4$, $p = 0.005$, Tukey post-hoc.
+	\item Mann–Whitney $U$-test: $p < 0.001$.
+	\item Pearson correlation: $r = 0.95$, $p < 0.001$.
+	\item Effect size: $\geq 2$-fold (log$_2$ scale).
+	\item $n > 100$ cells per condition.
+\end{itemize}
+
+\paragraph{Gene and protein names.}
+
+\begin{description}
+	\item[Gene (yeast, italics)] \textit{cdc28}, \textit{act1}.
+	\item[Protein (yeast, roman)] Cdc28, Act1.
+	\item[Gene (human, italics caps)] \textit{BRCA1}, \textit{TP53}.
+	\item[Protein (human, roman caps)] BRCA1, p53.
+	\item[Mutant allele] \textit{ade2}$^{\Delta}$.
+	\item[Species] \textit{S.~cerevisiae}, \textit{E.~coli}, \textit{C.~elegans}.
+\end{description}
+
+\paragraph{Equations.}
+
+Michaelis--Menten:
+\begin{equation}
+    v = \frac{V_{\max}[S]}{K_m + [S]}
+    \label{eq:michaelismenten}
+\end{equation}
+
+% TIP — always add \noindent after a displayed equation if you want the
+% following sentence to continue the paragraph flush-left (no indent):
+\noindent where $V_{\max}$ is the maximal velocity and $K_m$ the substrate
+concentration at half-maximal velocity.
+
+Henderson--Hasselbalch:
+\begin{equation*}
+	\text{pH} = \text{p}K_a + \log\frac{[\text{A}^-]}{[\text{HA}]}
+\end{equation*}
+
+Beer--Lambert:
+\[
+	A = \varepsilon \cdot l \cdot c
+\]
+
+Hemoglobin Binding Model (cf. \autoref{eq:michaelismenten}):
+\begin{align}
+    \theta &= \frac{[L]^n}{K_d^n + [L]^n}
+             = \frac{1}{1 + \left(\dfrac{K_d}{[L]}\right)^{\!n}}
+    \label{eq:hill} \\[6pt]
+    \frac{d\theta}{dt} &= k_{on}[L]^n(1-\theta) - k_{off}\,\theta
+    \label{eq:hill-kinetics}
+\end{align}
+
+\paragraph{Cross-references.}
+
+% \autoref — single target, coloured (defined by enslyonstage.cls):
+See \autoref{fig:pulldown} for the pull-down results,
+\autoref{fig:coip}A,B for the co-IP validation,
+and \autoref{fig:network} for the full interaction network.
+Statistical methods are described in \autoref{sec:methods}.
+
+% \crefcolor — one or more targets, coloured (defined by enslyonstage.cls):
+% Useful when citing several figures at once: \crefcolor{fig:coip,fig:network}
+% Do NOT add \usepackage{cleveref} — it is already loaded by the class.
+See \crefcolor{fig:pulldown,fig:coip} for the pull-down and co-IP data.
+
+\paragraph{Bibliography citations (superscript coloured [n]).}
+As shown previously\cite{Vincent2020}, the complex assembles under stress.
+These results are consistent with independent reports\cite{Journo2021,Trizac2019}.
+For reviews, see\cite{AlazardDany2019,Goudemand2019,Escarguel2015}.
+
+% Citing with author name visible in text:
+%   following \citeauthor{Smith2020}\cite{Smith2020} as defined by...
+%   → "following Smith [3] as defined by..."
+
+\paragraph{Typography notes.}
+\textit{In vivo}, \textit{in vitro}, \textit{in situ} — always italics.
+
+Multiplication sign: $5 \times 10^{6}$ cells (never letter~x).
+
+Plus-minus: $12.3 \pm 0.4$~kDa.
+
+Approximately: $\approx \SI{300}{\nano\metre}$.
+
+Non-breaking space before units and references: \SI{10}{\um} (use \texttt{\textasciitilde}).
+
+En-dash for ranges: 10--20\,\um\ (two hyphens in source).
+% ────────────────────────────────────────────────────────────────────────
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Author Contributions}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ENS requirement (mandatory):
+%   - State YOUR personal contribution (which experiments/analyses you performed)
+%   - Describe the role of EVERY person who participated in your mentoring
+%     or helped in the study
+%
+% Use initials matching those in author names above.
+% Example format: "F.L. designed and performed experiments X and Y..."
+
+\paragraph{}
+F.L.\ designed and performed all experiments, analysed the data, and wrote
+the manuscript.
+
+J.S.\ conceived the project, provided reagents and supervised the internship.
+
+J.D.\ provided academic supervision and critically revised the manuscript.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Acknowledgements}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Optional section to thank people who helped but are not listed in
+% Author Contributions (technical staff, facility managers, etc.)
+
+This report was typeset using a custom \LaTeX{} class developed for ENS de Lyon Biosciences internship reports.
+
+%--- Bibliography — ≤ 35 references (ENS guideline) --------------------------
+% ENS requirements for bibliography:
+%   - Maximum 35 publications
+%   - PNAS numbered style: superscript [n] with colored hyperlinks
+%   - Range compression: [1-3] instead of [1,2,3]
+%   - Unpublished data / personal communications: cite in text only, NOT here
+%
+% Citation commands:
+%   \cite{key}           → superscript [1]
+%   \cite{k1,k2,k3}      → superscript [1-3] (auto-compressed)
+%
+% Balance columns on final page (makes last page look cleaner)
+\balance
+
+% Make sure references.bib contains all cited entries
+\biblio
+
+% ── SUPPLEMENTARY FIGURES ──────────────────────────────────────────────────
+% Place supplementary figures AFTER \biblio.
+% Usage: \inserersuppfig[<includegraphics options>]{<file>}{<caption>}{<label>}
+% The optional first argument overrides the default width=\textwidth.
+% Counter resets to S1, S2, … automatically.
+% Cross-reference with \autoref{supp:fig1} → "Supplemental Figure S1"
+
+\inserersuppfig{example-image}{%
+  \textbf{Representative confocal micrograph of GFP-tagged Ssa1 in control
+  cells.}
+  Cells expressing Ssa1-GFP were imaged by confocal microscopy (63× oil,
+  0.13\,\um/pixel). Scale bar: \SI{5}{\micro\metre}.
+  ($n = 50$ cells from three independent experiments.)%
+}{supp:fig1}
+
+\inserersuppfig[width=0.6\textwidth]{example-image}{%
+  \textbf{Western blot confirming equal loading.}
+  Total protein extract ($\SI{20}{\micro\gram}$ per lane) was separated by
+  SDS-PAGE and probed with anti-PGK1 as a loading control.
+  Molecular weight markers (kDa) are indicated on the left.%
+}{supp:fig2}
+
+\end{document}
