@@ -1,6 +1,6 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %  enslyonstage.cls  —  Internship report class for ENS de Lyon Biosciences
-%  Version 2.0  (2026-07-29)
+%  Version 2.1  (2026-08-20)
 %
 %  Copyright (C) 2026  Adama Mbaye
 %  SPDX-License-Identifier: LPPL-1.3c
@@ -38,7 +38,7 @@
 % ↑ These directives are read by TeXcount (local) and Overleaf (Menu > Word Count)
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{enslyonstage}[2026/07/29 v2.0 ENS de Lyon Biosciences Internship Report]
+\ProvidesClass{enslyonstage}[2026/08/20 v2.1 ENS de Lyon Biosciences Internship Report]
 
 %-----------------------------------------------------------------------------
 %  THEME OPTIONS
@@ -448,7 +448,7 @@ justification=justified
 \newcommand{\tuteurstage}[2]{\def\@tuteurstagenom{#1}\def\@tuteurstagemail{#2}}
 
 % Word count (for compliance with ENS limits: M1≤5000, M2≤4000 ±10%)
-% Update before submission using: texcount -sum -1 main.tex
+% Update before submission using: texcount -sum -1 enslyonstage-gabarit.tex
 \newcommand{\nombredemots}[1]{\def\@nombredemots{#1}}
 
 % Previous internships table
@@ -596,7 +596,7 @@ justification=justified
 %-----------------------------------------------------------------------------
 %  TABLE OF CONTENTS FORMATTING
 %  Controls appearance of TOC entries
-%  Remove \tableofcontents from main.tex if your supervisor doesn't require it
+%  Remove \tableofcontents from enslyonstage-gabarit.tex if your supervisor doesn't require it
 %-----------------------------------------------------------------------------
 
 % Show sections, subsections, and subsubsections in TOC
@@ -924,11 +924,11 @@ justification=justified
 %  
 %  Prints the bibliography using biblatex
 %  
-%  Setup required in main.tex preamble:
+%  Setup required in enslyonstage-gabarit.tex preamble:
 %    \addbibresource{references.bib}
-%  
+%
 %  Compile sequence:
-%    pdflatex main.tex  →  biber main  →  pdflatex × 2
+%    pdflatex enslyonstage-gabarit  →  biber enslyonstage-gabarit  →  pdflatex × 2
 %  
 %  ENS requirements:
 %    - Maximum 35 references

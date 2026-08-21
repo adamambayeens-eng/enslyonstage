@@ -1,6 +1,6 @@
 # ENSLyonStage — LaTeX class for ENS de Lyon Biosciences internship reports
 
-**Version 2.0** | **License: LPPL 1.3c** | **Author: Adama Mbaye**
+**Version 2.1** | **License: LPPL 1.3c** | **Author: Adama Mbaye**
 
 A LaTeX2e class for M1 and M2 internship reports following the formatting
 guidelines of the École Normale Supérieure de Lyon Biosciences Master programme.
@@ -38,6 +38,7 @@ On Overleaf: set compiler to `pdfLaTeX` and bibliography tool to `biber`
 | `enslyonstage-gabarit.tex` | Blank report template |
 | `enslyonstage-exemple.tex` | Fully worked example |
 | `references.bib` | Sample bibliography database |
+| `figures/` | Screenshots used in the user guide |
 | `logos/` | ENS de Lyon branding assets |
 
 ## Colour themes (22)
