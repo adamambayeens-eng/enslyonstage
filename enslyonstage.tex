@@ -1,7 +1,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%  enslyonstage.tex — Guide d'utilisation du template ENSLyonStage v2
+%  enslyonstage.tex — Guide d'utilisation du template ENSLyonStage v2.2
 %
-%  Compilez avec : pdflatex README → biber README → pdflatex README  (×2 pour ToC et \autoref{})
+%  Compilez avec : pdflatex enslyonstage → biber enslyonstage → pdflatex enslyonstage  (×2 pour ToC et \autoref{})
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \documentclass[12pt, a4paper]{article}
@@ -35,6 +35,7 @@
 % ── Polices ────────────────────────────────────────────────────────────────
 \usepackage{palatino}
 \usepackage{mathpazo}
+\usepackage{amssymb}
 
 % ── Couleurs ───────────────────────────────────────────────────────────────
 \usepackage{xcolor}
@@ -241,14 +242,14 @@
 
 % ── Hyperliens ─────────────────────────────────────────────────────────────
 \usepackage[colorlinks, linkcolor=ENSorange, urlcolor=ENSaccent,
-            citecolor=ENSorange, pdftitle={Guide ENSLyonStage v2},
+            citecolor=ENSorange, pdftitle={Guide ENSLyonStage v2.2},
             pdfauthor={ENS de Lyon}]{hyperref}
 
 % ── En-têtes et pieds de page ─────────────────────────────────────────────
 \usepackage{fancyhdr}
 \pagestyle{fancy}
 \fancyhf{}
-\fancyhead[L]{\small\sffamily\color{ENSorange} Guide \texttt{ENSLyonStage} v2}
+\fancyhead[L]{\small\sffamily\color{ENSorange} Guide \texttt{ENSLyonStage} v2.2}
 \fancyhead[R]{\small\sffamily\leftmark}
 \fancyfoot[C]{\small\sffamily\thepage}
 \renewcommand{\headrulewidth}{0.4pt}
@@ -262,6 +263,12 @@
 \graphicspath{{figures/}{logos/}}
 \usepackage{booktabs}
 \usepackage{array}
+% ── siunitx + mhchem (pour les demos droite) ──────────────────────────────
+\usepackage{siunitx}
+\sisetup{inter-unit-product=\cdot}
+\DeclareSIUnit{\Molar}{M}
+\DeclareSIUnit{\rpm}{rpm}
+\usepackage[version=4]{mhchem}
 % Colonne centrée avec retour à la ligne automatique
 \newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
 \usepackage{enumitem}
@@ -305,7 +312,7 @@
   {\color{ENSorange}\rule{0.85\linewidth}{1.2pt}}\par\vspace{0.5cm}
   {\large\itshape Rapports de stage M1/M2 Biosciences — ENS de Lyon\par}
   \vspace{0.25cm}
-  {\large Version 2.1 — Août 2026\par}
+  {\large Version 2.2 — Septembre 2026\par}
   \vspace{0.25cm}
   {Adama \textsc{Mbaye}\par}
   \vspace{0.9cm}
@@ -345,8 +352,10 @@
     \small\sffamily
     Ce document explique comment utiliser toutes les commandes du template.
     Chaque boîte présente le \textbf{code} à gauche et le \textbf{rendu visuel}
-    à droite. Pour un exemple complet de rapport, ouvrir
-    \texttt{enslyonstage-exemple.tex}.
+    à droite. Pour voir le rendu visuel d'un rapport complet, consulter
+    \texttt{enslyonstage-exemple.tex} (démonstration visuelle uniquement,
+    pas un modèle de fond scientifique).\\[4pt]
+    \textcolor{ENSaccent}{\url{https://github.com/adammbaye/enslyonstage}}
   \end{tcolorbox}
 \end{titlepage}
 
@@ -371,7 +380,7 @@ et formate le texte conformément aux exigences de l'école.
   \textbf{Fichier} & \textbf{Rôle} \\
   \midrule
   \texttt{enslyonstage-gabarit.tex}  & \textbf{Votre rapport} — à compléter et compiler \\
-  \texttt{enslyonstage-exemple.tex}  & Exemple complet en référence \\
+  \texttt{enslyonstage-exemple.tex}  & Démonstration visuelle du rendu — basée sur un vrai rapport M1 publié sur Zenodo (\url{https://doi.org/10.5281/zenodo.21631816}) ; ne pas prendre comme modèle de fond scientifique \\
   \texttt{enslyonstage.cls}    & Classe \LaTeX{} du template (ne pas modifier) \\
   \texttt{references.bib}      & Exemple de base de données bibliographique \\
   \texttt{figures/}            & Vos figures (PDF, PNG, JPG\ldots) \\
@@ -388,10 +397,10 @@ et formate le texte conformément aux exigences de l'école.
   \toprule
   & \textbf{M1} & \textbf{M2} \\
   \midrule
-  Mots (hors légendes et références) & $\leq$ 5\,000 ($\pm$\,10\,\%) & $\leq$ 4\,000 ($\pm$\,10\,\%) \\
-  Figures + tableaux                 & $\leq$ 6 & $\leq$ 5 \\
-  Références                         & \multicolumn{2}{C{7.6cm}}{$\leq$ 35} \\
-  Titre                              & \multicolumn{2}{C{7.6cm}}{$\leq$ 125 caractères} \\
+  Mots (hors légendes et références) & $\leqslant$ 5\,000 ($\pm$\,10\,\%) & $\leqslant$ 4\,000 ($\pm$\,10\,\%) \\
+  Figures + tableaux                 & $\leqslant$ 6 & $\leqslant$ 5 \\
+  Références                         & \multicolumn{2}{C{7.6cm}}{$\leqslant$ 35} \\
+  Titre                              & \multicolumn{2}{C{7.6cm}}{$\leqslant$ 125 caractères} \\
   Abstract                           & \multicolumn{2}{C{7.6cm}}{150–200 mots, en anglais, sans référence} \\
   \bottomrule
 \end{tabular}
@@ -406,19 +415,20 @@ et formate le texte conformément aux exigences de l'école.
     (y compris \texttt{.cls}, \texttt{.bib}, les dossiers \texttt{logos/}
     et \texttt{figures/}). Overleaf détecte \texttt{enslyonstage-gabarit.tex} comme fichier
     racine et utilise \texttt{biber} automatiquement.
-  \item \textbf{Remplissez les métadonnées} dans la section préambule de
+  \item \textbf{Métadonnées :} remplissez le préambule de
     \texttt{enslyonstage-gabarit.tex} (voir \autoref{sec:metadata}).
-  \item \textbf{Ajoutez vos figures} dans le dossier \texttt{figures/}.
-  \item \textbf{Écrivez vos sections} en copiant les exemples de ce guide
-    ou de \texttt{enslyonstage-exemple.tex}.
+  \item \textbf{Figures :} ajoutez vos images dans \texttt{figures/}.
+  \item \textbf{Sections :} rédigez en vous aidant de ce guide
+    et de \texttt{enslyonstage-exemple.tex}.
   \item \textbf{Comptage de mots} : sur Overleaf, \texttt{Menu → Word Count}.
     Les légendes, tableaux et abstract sont exclus automatiquement.
 \end{enumerate}
 
 \begin{astuce}
   \textbf{Compilation locale :}
-  \texttt{pdflatex main} \textrightarrow{} \texttt{biber main}
-  \textrightarrow{} \texttt{pdflatex main}.
+  \texttt{pdflatex enslyonstage-gabarit} \textrightarrow{}
+  \texttt{biber enslyonstage-gabarit} \textrightarrow{}
+  \texttt{pdflatex enslyonstage-gabarit}.
   Sur Overleaf, tout est géré automatiquement à chaque sauvegarde.
 \end{astuce}
 
@@ -427,9 +437,9 @@ et formate le texte conformément aux exigences de l'école.
 \label{sec:metadata}
 % ═══════════════════════════════════════════════════════════════════════════
 
-Toutes les métadonnées se déclarent dans le \emph{préambule} de
-\texttt{enslyonstage-gabarit.tex}, avant \verb|\begin{document}|. Elles alimentent la page
-de garde, les en-têtes, les pieds de page et les propriétés PDF du document.
+Toutes les métadonnées se déclarent dans le \emph{préambule}, avant
+\verb|\begin{document}|. Elles alimentent la page de garde, les en-têtes,
+les pieds de page et les propriétés PDF.
 
 \subsection{\texttt{\textbackslash titre\{\}}}
 
@@ -470,6 +480,8 @@ de garde, les en-têtes, les pieds de page et les propriétés PDF du document.
 {\Large Prénom \textsc{Nom}}\\[6pt]
 {\footnotesize\itshape Utiliser \texttt{\textbackslash textsc\{\}} pour les petites capitales sur le nom de famille.}
 \end{demo}
+
+\newpage
 
 \subsection[\texttt{\textbackslash master} et \texttt{\textbackslash domaine}]{\texttt{\textbackslash master\{\}} et \texttt{\textbackslash domaine\{\}}}
 
@@ -566,7 +578,7 @@ Pour ne pas afficher d'email, laisser le 2\textsuperscript{e} argument vide : \t
 Complète \verb|\abstracts{}| avec une image placée \emph{sous} le texte de l'abstract (schéma de principe, diagramme de workflow, résumé graphique\ldots). L'argument facultatif règle la largeur (défaut : \texttt{0.9\textbackslash textwidth}).
 
 \begin{demo}
-.\begin{lstlisting}[style=latexcode]
+\begin{lstlisting}[style=latexcode]
 \abstracts{%
   Non-coding RNAs (ncRNAs) are involved in an increasingly recognized number of cellular events [...]
   % --- abstract visuel ---
@@ -616,29 +628,31 @@ Complète \verb|\abstracts{}| avec une image placée \emph{sous} le texte de l'a
 
 \subsection[\texttt{\textbackslash stagesanterieurs} et \texttt{\textbackslash stagerow}]{\texttt{\textbackslash stagesanterieurs\{\}} et \texttt{\textbackslash stagerow\{\}}}
 
-\begin{demo}
+\begin{demo}[sidebyside=false]
 \begin{lstlisting}[style=latexcode]
 \stagesanterieurs{
-  \stagerow{L3}{Institut X, Lyon}
-    {Dr. Martin}{Biophysique}
-  \stagerow{M1}{Lab Y, Paris}
-    {Pr. Curie}{Génomique}
+  \stagerow{L3}{Institut Pasteur, Paris}
+    {Dr.~Dupont}{Virologie moléculaire}
+  \stagerow{M1}{MPI Neurobiology, Munich}
+    {Pr.~Schmidt}{Plasticité synaptique}
   \stagerow{M2}{}{}{}
 }
 \end{lstlisting}
 \tcblower
-\footnotesize
+\footnotesize\centering
 \begin{tabular}{@{}llll@{}}
   \toprule
   \textbf{Année} & \textbf{Laboratoire} & \textbf{Encadrant} & \textbf{Sujet}\\
   \midrule
-  L3 & Institut X, Lyon & Dr. Martin & Biophysique\\
-  M1 & Lab Y, Paris & Pr. Curie & Génomique\\
+  L3 & Institut Pasteur, Paris & Dr.~Dupont & Virologie moléculaire\\
+  M1 & MPI Neurobiology, Munich & Pr.~Schmidt & Plasticité synaptique\\
   M2 & & & \\
   \bottomrule
-\end{tabular}\\[6pt]
+\end{tabular}\\[4pt]
 \itshape Laisser \texttt{\{\}} les niveaux non encore effectués.
 \end{demo}
+
+\newpage
 
 % ═══════════════════════════════════════════════════════════════════════════
 \section{Logos}
@@ -648,7 +662,7 @@ Les logos se placent dans le dossier \texttt{logos/} et se déclarent dans
 le préambule. Les bandeaux \texttt{hautdepage.pdf} et \texttt{basdepage.pdf}
 sont utilisés automatiquement par \verb|\fairepagedegarde|.
 
-\begin{demo}
+\begin{demo}[lefthand width=\dimexpr2\linewidth/5-3mm\relax]
 \begin{lstlisting}[style=latexcode]
 % Logo ENS — pied de page centre (auto)
 \logoENS[1.5cm]{logos/logo_ens.pdf}
@@ -798,7 +812,7 @@ garde générée ressemble à ceci :
 \begin{lstlisting}[style=latexcode]
 \paragraph{Fly stocks and husbandry.}
 Flies were maintained at
-\SI{25}{\degreeCelsius} on standard
+\qty{25}{\degreeCelsius} on standard
 cornmeal–agar medium...
 
 \paragraph{} % paragraphe sans titre
@@ -973,7 +987,7 @@ Avec un argument vide, le titre est absent — utiliser pour faire un alinéa en
   {fig:fig1}
 \end{lstlisting}
 \tcblower
-\simfigbox[figures/fig1.pdf]{Titre de la figure. (\textbf{A})~Schéma du protocole. (\textbf{B})~Résultats. $n = 7$, $p < 0.05$.}
+\simfigbox[figures/fig1.pdf]{Titre de la figure. (\textbf{A})~Schéma du protocole. (\textbf{B})~Résultats. $n = 7$, $p < 0.05$, test de Mann-Whitney.}
 \end{demo}
 
 \subsection{Figure colonne simple — \texttt{[col]}}
@@ -1079,6 +1093,8 @@ Les figures supplémentaires se placent \textbf{après} \verb|\biblio|, hors de 
   Contactez \texttt{stages.biosciences@ens-lyon.fr} pour confirmer que votre tuteur ENS autorise les suppléments avant de les inclure.
 \end{astuce}
 
+\newpage
+
 \subsection{Syntaxe de base}
 
 \begin{demo}
@@ -1088,7 +1104,7 @@ Les figures supplémentaires se placent \textbf{après} \verb|\biblio|, hors de 
 {%
   \textbf{Titre de la figure supplémentaire.}
   Description détaillée du panneau.
-  $n = 5$ animaux. Barre d'échelle : \SI{10}{\micro\metre}.%
+  $n = 5$ animaux. Barre d'échelle : \qty{10}{\micro\metre}.%
 }{supp:fig1}
 \end{lstlisting}
 \tcblower
@@ -1187,10 +1203,8 @@ $n = 3$ replicats. FC = fold-change.\\[3pt]
   \item \texttt{\textbackslash small} ou \texttt{\textbackslash footnotesize} pour les tableaux denses
 \end{itemize}
 \smallskip
-\textit{Tableaux et figures partagent le même quota : M1\,$\leq$\,6, M2\,$\leq$\,5.}
+\textit{Tableaux et figures partagent le même quota : M1\,$\leqslant$\,6, M2\,$\leqslant$\,5.}
 \end{demo}
-
-\newpage
 
 % ═══════════════════════════════════════════════════════════════════════════
 \section{Équations}
@@ -1239,11 +1253,9 @@ Henderson--Hasselbalch :
 \[
   \text{pH} = \text{p}K_a + \log\frac{[\text{A}^-]}{[\text{HA}]}
 \]
-$A = \varepsilon \cdot l \cdot c$\\[6pt]
+\[ A = \varepsilon \cdot l \cdot c \]
 {\footnotesize\itshape \texttt{equation*} et \texttt{\textbackslash[\,\textbackslash]} donnent le même résultat : une équation centrée sans numéro.}
 \end{demo}
-
-\newpage
 
 \subsection{Équations alignées — \texttt{align}}
 
@@ -1261,11 +1273,13 @@ $A = \varepsilon \cdot l \cdot c$\\[6pt]
 \end{align}
 \end{lstlisting}
 \tcblower
-\begin{align*}
+\begin{align}
   \frac{dN}{dt}
-    &= rN\!\left(1-\frac{N}{K}\right) \\
+    &= rN\!\left(1-\frac{N}{K}\right)
+    \label{eq:logistic} \\
     &= rN - \frac{r}{K}\,N^2
-\end{align*}
+    \label{eq:expanded}
+\end{align}
 {\footnotesize\itshape \texttt{align} aligne sur \texttt{\&}. Le membre gauche ($dN/dt$) n'apparaît qu'une fois : les lignes suivantes portent seulement \texttt{\&=} suivi de la forme développée. Chaque ligne peut avoir son propre \texttt{\textbackslash label\{\}}.\\[4pt]
 Ici : modèle logistique ($N$ = effectif, $r$ = taux de croissance intrinsèque, $K$ = capacité biotique).}
 \end{demo}
@@ -1284,8 +1298,8 @@ Ici : modèle logistique ($N$ = effectif, $r$ = taux de croissance intrinsèque,
 \tcblower
 {\footnotesize Le fichier \texttt{references.bib} contient vos références au format BibTeX/BibLaTeX. Sur Overleaf, \texttt{biber} est utilisé automatiquement.}\\[6pt]
 {\footnotesize\textbf{Compilation locale :}\\
-\texttt{pdflatex main} \textrightarrow{} \texttt{biber main} \textrightarrow{} \texttt{pdflatex main}}\\[6pt]
-{\footnotesize\textit{Limite ENS : $\leq$ 35 références.}}
+\texttt{pdflatex enslyonstage-gabarit} \textrightarrow{} \texttt{biber enslyonstage-gabarit} \textrightarrow{} \texttt{pdflatex enslyonstage-gabarit}}\\[6pt]
+{\footnotesize\textit{Limite ENS : $\leqslant$ 35 références.}}
 \end{demo}
 
 \subsection{\texttt{\textbackslash cite\{\}} — citation simple}
@@ -1304,8 +1318,6 @@ Comme démontré\simcite{1}, la protéine X s'assemble.\\[6pt]
 Résultats similaires\simcite{1--3}.\\[8pt]
 {\footnotesize\itshape Les citations apparaissent en exposant coloré. Les plages contigues sont compressées automatiquement : \texttt{\textbackslash cite\{A,B,C\}} donne \simcite{1--3} si les trois références sont numérotées consécutivement.}
 \end{demo}
-
-\newpage
 
 \subsection[\texttt{\textbackslash citeauthor} et \texttt{\textbackslash citeyear}]{\texttt{\textbackslash citeauthor\{\}} et \texttt{\textbackslash citeyear\{\}}}
 
@@ -1342,7 +1354,7 @@ Nguyen et al., 2020\\[8pt]
 \nocite{Escarguel2015}
 \nocite{Goudemand2019}
 {\small\sffamily\bfseries References}\par\nopagebreak\vspace{2pt}
-\printbibliography[heading=none]
+{\renewcommand*{\bibfont}{\tiny}\printbibliography[heading=none]}
 \end{refsection}
 \smallskip
 {\scriptsize\itshape \texttt{\textbackslash biblio} ajoute également
@@ -1426,44 +1438,42 @@ Voir \simlink{Figs.~1 and~2} pour les résultats principaux.\\[6pt]
 \section{Unités — \texttt{siunitx}}
 % ═══════════════════════════════════════════════════════════════════════════
 
-\subsection{\texttt{\textbackslash SI\{\}\{\}} — valeur et unité}
+\subsection{\texttt{\textbackslash qty\{\}\{\}} — valeur et unité}
 
 \begin{demo}
 \begin{lstlisting}[style=latexcode]
-Vitesse : \SI{30}{\centi\metre\per\second}
-Température : \SI{37}{\degreeCelsius}
-Centrifugation : \SI{1500}{\rpm}
-Concentration : \SI{5}{\milli\Molar}
-Longueur d'onde : \SI{280}{\nano\metre}
-Plage : \SIrange{50}{100}{\micro\litre}
+Vitesse : \qty{30}{\centi\metre\per\second}
+Température : \qty{37}{\degreeCelsius}
+Centrifugation : \qty{1500}{\rpm}
+Concentration : \qty{5}{\milli\Molar}
+Longueur d'onde : \qty{280}{\nano\metre}
+Plage : \qtyrange{50}{100}{\micro\litre}
 \end{lstlisting}
 \tcblower
-Vitesse : 30\,cm$\cdot$s$^{-1}$\\
-Température : 37\,°C\\
-Centrifugation : 1\,500\,rpm\\
-Concentration : 5\,mM\\
-Longueur d'onde : 280\,nm\\
-Plage : 50–100\,µL\\[6pt]
+Vitesse : \qty{30}{\centi\metre\per\second}\\
+Température : \qty{37}{\degreeCelsius}\\
+Centrifugation : \qty{1500}{\rpm}\\
+Concentration : \qty{5}{\milli\Molar}\\
+Longueur d'onde : \qty{280}{\nano\metre}\\
+Plage : \qtyrange{50}{100}{\micro\litre}\\[6pt]
 {\footnotesize\itshape \texttt{\textbackslash rpm} et \texttt{\textbackslash Molar} sont des unités personnalisées déclarées dans la classe. Le séparateur entre unités est le point médian ($\cdot$) — exigence ENS.}
 \end{demo}
 
-\subsection{\texttt{\textbackslash si\{\}} — unité seule}
+\subsection{\texttt{\textbackslash unit\{\}} — unité seule}
 
 \begin{demo}
 \begin{lstlisting}[style=latexcode]
 Toutes les longueurs sont en
-\si{\micro\metre}.
+\unit{\micro\metre}.
 
 Unité composée seule :
-\si{\micro\gram\per\milli\litre}
+\unit{\micro\gram\per\milli\litre}
 \end{lstlisting}
 \tcblower
-Toutes les longueurs sont en µm.\\[6pt]
-µg$\cdot$mL$^{-1}$\\[6pt]
-{\footnotesize\itshape Utiliser \texttt{\textbackslash si\{\}} quand l'unité apparaît seule dans une phrase, sans valeur numérique.}
+Toutes les longueurs sont en \unit{\micro\metre}.\\[6pt]
+\unit{\micro\gram\per\milli\litre}\\[6pt]
+{\footnotesize\itshape Utiliser \texttt{\textbackslash unit\{\}} quand l'unité apparaît seule dans une phrase, sans valeur numérique.}
 \end{demo}
-
-\newpage
 
 \subsection{\texttt{\textbackslash num\{\}} — notation scientifique et grands nombres}
 
@@ -1475,31 +1485,33 @@ Population : \num{150000}
 Enrichissement : \num{3.2}-fold
 \end{lstlisting}
 \tcblower
-Avogadro : $6.022 \times 10^{23}$\\
-Constante : $1.38 \times 10^{-23}$\\
-Population : 150\,000\\
-Enrichissement : 3.2-fold\\[6pt]
+Avogadro : \num{6.022e23}\\
+Constante : \num{1.38e-23}\\
+Population : \num{150000}\\
+Enrichissement : \num{3.2}-fold\\[6pt]
 {\footnotesize\itshape \texttt{\textbackslash num} formate les nombres : séparateur de milliers, notation scientifique, alignement décimal.}
 \end{demo}
+
+\newpage
 
 \subsection{Raccourcis personnalisés}
 
 \begin{demo}
 \begin{lstlisting}[style=latexcode]
 % Définis dans le préambule de enslyonstage-gabarit.tex :
-\newcommand{\um}{\si{\micro\metre}}
-\newcommand{\uM}{\si{\micro\Molar}}
-\newcommand{\degC}{\si{\degreeCelsius}}
+\newcommand{\um}{\unit{\micro\metre}}
+\newcommand{\uM}{\unit{\micro\Molar}}
+\newcommand{\degC}{\unit{\degreeCelsius}}
 
 % Utilisation dans le texte :
 Diamètre cellulaire : 10\,\um
-Inhibiteur : \SI{2}{\uM}
+Inhibiteur : \qty{2}{\uM}
 Incubation : 37\,\degC
 \end{lstlisting}
 \tcblower
-Diamètre cellulaire : 10\,µm\\
-Inhibiteur : 2\,µM\\
-Incubation : 37\,°C\\[8pt]
+Diamètre cellulaire : 10\,\unit{\micro\metre}\\
+Inhibiteur : \qty{2}{\micro\Molar}\\
+Incubation : \qty{37}{\degreeCelsius}\\[8pt]
 {\footnotesize\itshape Ajouter ses propres raccourcis dans la section ``CUSTOM SHORTCUTS'' du préambule de \texttt{enslyonstage-gabarit.tex}.}
 \end{demo}
 
@@ -1514,19 +1526,17 @@ Réaction ATP : \ce{ATP -> ADP + Pi}
 Redox : \ce{NAD+ + H+ + 2e- -> NADH}
 Ion : \ce{Ca^2+}, \ce{Mg^2+}
 Radioisotope : \ce{^{32}P}
-Buffer : \SI{50}{\milli\Molar} \ce{NaH2PO4}
+Buffer : \qty{50}{\milli\Molar} \ce{NaH2PO4}
 \end{lstlisting}
 \tcblower
-Peroxyde : H\textsubscript{2}O\textsubscript{2}\\
-Réaction ATP : ATP $\to$ ADP + P\textsubscript{i}\\
-Redox : NAD$^+$ + H$^+$ + 2e$^-$ $\to$ NADH\\
-Ion : Ca$^{2+}$, Mg$^{2+}$\\
-Radioisotope : $^{32}$P\\
-Buffer : 50\,mM NaH\textsubscript{2}PO\textsubscript{4}\\[6pt]
+Peroxyde : \ce{H2O2}\\
+Réaction ATP : \ce{ATP -> ADP + Pi}\\
+Redox : \ce{NAD+ + H+ + 2e- -> NADH}\\
+Ion : \ce{Ca^2+}, \ce{Mg^2+}\\
+Radioisotope : \ce{^{32}P}\\
+Buffer : \qty{50}{\milli\Molar} \ce{NaH2PO4}\\[6pt]
 {\footnotesize\itshape \texttt{\textbackslash ce\{\}} gère automatiquement les exposants/indices, les flèches de réaction et les équilibres.}
 \end{demo}
-
-\newpage
 
 % ═══════════════════════════════════════════════════════════════════════════
 \section{Typographie — règles de style ENS}
@@ -1541,10 +1551,10 @@ We used three biological replicates
 and observed 12 animals.
 
 % Toujours en chiffres avec unité :
-3 µm, 5 mM, \SI{10}{\micro\metre}
+3 µm, 5 mM, \qty{10}{\micro\metre}
 
 % Espace insécable avant une unité :
-10~µm   % ou \SI{10}{\um}
+10~µm   % ou \qty{10}{\um}
 \end{lstlisting}
 \tcblower
 \footnotesize
@@ -1552,7 +1562,7 @@ and observed 12 animals.
   \item[1–9 sans unité] En lettres : \textit{three replicates}
   \item[10 et + sans unité] En chiffres : \textit{12 animals}
   \item[Avec unité] Toujours en chiffres : \textit{3\,µm}, \textit{5\,mM}
-  \item[Espace insécable] \texttt{\textasciitilde} entre chiffre et unité écrite à la main ; géré automatiquement par \texttt{\textbackslash SI\{\}\{\}}
+  \item[Espace insécable] \texttt{\textasciitilde} entre chiffre et unité écrite à la main ; géré automatiquement par \texttt{\textbackslash qty\{\}\{\}}
 \end{description}
 \end{demo}
 
@@ -1584,8 +1594,6 @@ BRCA1, p53, Cdc28
 \itshape La tilde \texttt{\textasciitilde} dans \textit{S.\textasciitilde{}cerevisiae} empêche une coupure de ligne entre l'abréviation et le nom.
 \end{demo}
 
-\newpage
-
 \subsection{Signes typographiques}
 
 \begin{demo}
@@ -1597,20 +1605,20 @@ $5 \times 10^6$ cellules
 $12.3 \pm 0.4$~kDa
 
 % Tiret demi-cadratin (plages) :
-10--20\,\si{\micro\metre}
+10--20\,\unit{\micro\metre}
 
 % Tiret cadratin (incise) :
 The complex --- as shown --- assembles.
 
 % Environ :
-$\approx \SI{300}{\nano\metre}$
+$\approx \qty{300}{\nano\metre}$
 \end{lstlisting}
 \tcblower
-$5 \times 10^6$ cellules\\[4pt]
-$12.3 \pm 0.4$\,kDa\\[4pt]
-10–20\,µm\\[4pt]
-The complex --- as shown --- assembles.\\[4pt]
-$\approx$ 300\,nm\\[8pt]
+$5 \times 10^6$ cellules\\[8pt]
+$12.3 \pm 0.4$\,kDa\\[8pt]
+10–20\,µm\\[8pt]
+The complex --- as shown --- assembles.\\[8pt]
+$\approx$ 300\,nm\\[12pt]
 {\footnotesize
 \texttt{-\,-} = tiret demi-cadratin – (plages)\\
 \texttt{-\,-\,-} = tiret cadratin — (incise)\\
@@ -1682,6 +1690,8 @@ manipulations.
 {\footnotesize\itshape Crée une grande lettre initiale sur \texttt{lines=3} lignes. Le package \texttt{lettrine} est déjà chargé par la classe. Premier argument = lettre ornée ; deuxième = suite de la lettre (en minuscules).}
 \end{demo}
 
+\newpage
+
 \subsection[\texttt{\textbackslash TODO} et \texttt{\textbackslash NOTE} — annotations]{\texttt{\textbackslash TODO} et \texttt{\textbackslash NOTE} — annotations}
 
 \begin{demo}
@@ -1698,8 +1708,6 @@ manipulations.
   {\footnotesize Supprimer \textbf{tous} les \texttt{\textbackslash TODO} et \texttt{\textbackslash NOTE} avant la soumission finale.}
 \end{attention}
 \end{demo}
-
-\newpage
 
 \subsection{En-têtes et pieds de page — personnalisation}
 
@@ -1725,6 +1733,8 @@ manipulations.
 \medskip
 \itshape Dans la grande majorité des cas, les valeurs par défaut conviennent. Ne personnaliser que si nécessaire.
 \end{demo}
+
+\newpage
 
 % ═══════════════════════════════════════════════════════════════════════════
 \section{Comptage de mots}
@@ -1753,8 +1763,8 @@ manipulations.
 \end{lstlisting}
 \tcblower
 \footnotesize\textbf{Limites ENS :}\\
-M1 : $\leq$ 5\,000 mots ($\pm$\,10\,\%)\\
-M2 : $\leq$ 4\,000 mots ($\pm$\,10\,\%)\\[8pt]
+M1 : $\leqslant$ 5\,000 mots ($\pm$\,10\,\%)\\
+M2 : $\leqslant$ 4\,000 mots ($\pm$\,10\,\%)\\[8pt]
 \textbf{Exclusions automatiques :}
 \begin{itemize}[noitemsep, topsep=2pt]
   \item Légendes de figures (\texttt{\textbackslash insererfigure})
@@ -1766,7 +1776,6 @@ M2 : $\leq$ 4\,000 mots ($\pm$\,10\,\%)\\[8pt]
 \itshape Les directives \texttt{\%TC:} dans \texttt{enslyonstage.cls} sont lues par le compteur Overleaf et par \texttt{texcount} — aucune configuration supplémentaire n'est nécessaire.
 \end{demo}
 
-\newpage
 
 % ═══════════════════════════════════════════════════════════════════════════
 \section{Exporter sa bibliographie \textit{Zotero} vers \LaTeX{}}
@@ -1813,6 +1822,8 @@ et corriger les clés directement dans la bibliothèque.
   (\texttt{Vincent2020a}, \texttt{Vincent2020b}\ldots).
 \end{astuce}
 
+\newpage
+
 \subsection{Exporter le fichier \texttt{.bib}}
 
 \texttt{Fichier > Exporter la bibliothèque}, choisir le format
@@ -1826,8 +1837,6 @@ Déclarer ensuite le fichier dans le préambule :
 \addbibresource{nomdufichier.bib}
 
 \end{lstlisting}
-
-\newpage
 
 % ═══════════════════════════════════════════════════════════════════════════
 \section{Questions fréquentes}
@@ -1868,14 +1877,13 @@ Déclarer ensuite le fichier dans le préambule :
     (voir \autoref{sec:metadata}).
 
   \item[\textit{Je veux changer de couleur de thème.}]
-    Modifier l'option de \verb|\documentclass| :
-    \verb|\documentclass[blue]{enslyonstage}|.
+    Modifier l'option de \verb|\documentclass[blue]{enslyonstage}|.
     Les 22 thèmes disponibles sont listés en \autoref{sec:couleurs}.
 
   \item[\textit{La table des matières coupe une entrée en deux lignes.}]
     Corrigé en v2 (directive \verb|\nobreak| dans la classe). Si le
-    problème persiste sur un titre très long, raccourcir le titre ou utiliser
-    \verb|\section[Titre court TOC]{Titre long dans le document}|.
+    problème persiste, raccourcir le titre ou utiliser la syntaxe
+    \verb|\section[Titre court]{Titre long}|.
 
   \item[\textit{Les colonnes de la dernière page sont déséquilibrées.}]
     S'assurer que \verb|\balance| est placé \textit{juste avant}

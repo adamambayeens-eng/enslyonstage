@@ -1,6 +1,6 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %  enslyonstage.cls  —  Internship report class for ENS de Lyon Biosciences
-%  Version 2.1  (2026-08-20)
+%  Version 2.2  (2026-09-06)
 %
 %  Copyright (C) 2026  Adama Mbaye
 %  SPDX-License-Identifier: LPPL-1.3c
@@ -38,7 +38,7 @@
 % ↑ These directives are read by TeXcount (local) and Overleaf (Menu > Word Count)
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{enslyonstage}[2026/08/20 v2.1 ENS de Lyon Biosciences Internship Report]
+\ProvidesClass{enslyonstage}[2026/09/06 v2.2 ENS de Lyon Biosciences Internship Report]
 
 %-----------------------------------------------------------------------------
 %  THEME OPTIONS
@@ -160,8 +160,8 @@ justification=justified
 % Units and scientific notation
 \RequirePackage{siunitx}
 % Define custom units commonly used in biology
-\DeclareSIUnit{\Molar}{M}   % Molarity: \SI{5}{\milli\Molar} → 5 mM
-\DeclareSIUnit{\rpm}{rpm}   % Revolutions per minute: \SI{1500}{\rpm} → 1500 rpm
+\DeclareSIUnit{\Molar}{M}   % Molarity: \qty{5}{\milli\Molar} → 5 mM
+\DeclareSIUnit{\rpm}{rpm}   % Revolutions per minute: \qty{1500}{\rpm} → 1500 rpm
 
 % Subfigures support
 \RequirePackage{subcaption}
@@ -810,10 +810,10 @@ justification=justified
 	\setlength{\dbltextfloatsep}{8pt plus 2pt minus 2pt}%   % Space around double-column floats
 	\setlength{\textfloatsep}{8pt plus 2pt minus 2pt}%      % Space around single-column floats
 	\renewcommand{\dbltopfraction}{0.85}%      % Max fraction of page for top double-column floats
-	\renewcommand{\dblfloatpagefraction}{0.85}% % Min fraction for dedicated double-column float page
+	\renewcommand{\dblfloatpagefraction}{0.5}% % Min fraction for dedicated double-column float page
 	\renewcommand{\topfraction}{0.85}%         % Max fraction for top single-column floats
 	\renewcommand{\bottomfraction}{0.85}%      % Max fraction for bottom single-column floats
-	\renewcommand{\floatpagefraction}{0.85}%   % Min fraction for dedicated single-column float page
+	\renewcommand{\floatpagefraction}{0.5}%    % Min fraction for dedicated single-column float page
 	\setcounter{dbltopnumber}{4}%              % Max double-column floats at top
 	\setcounter{topnumber}{4}%                 % Max single-column floats at top
 	\setcounter{totalnumber}{8}%               % Max floats per page

@@ -1,6 +1,6 @@
 # ENSLyonStage — LaTeX class for ENS de Lyon Biosciences internship reports
 
-**Version 2.1** | **License: LPPL 1.3c** | **Author: Adama Mbaye**
+**Version 2.2** | **License: LPPL 1.3c** | **Author: Adama Mbaye**
 
 A LaTeX2e class for M1 and M2 internship reports following the formatting
 guidelines of the École Normale Supérieure de Lyon Biosciences Master programme.
@@ -34,12 +34,16 @@ On Overleaf: set compiler to `pdfLaTeX` and bibliography tool to `biber`
 | File | Description |
 |------|-------------|
 | `enslyonstage.cls` | The LaTeX class |
-| `enslyonstage.pdf` | Full user guide (built from `enslyonstage.tex`) |
-| `enslyonstage-gabarit.tex` | Blank report template |
-| `enslyonstage-exemple.tex` | Fully worked example |
-| `references.bib` | Sample bibliography database |
-| `figures/` | Screenshots used in the user guide |
-| `logos/` | ENS de Lyon branding assets |
+| `enslyonstage.tex` | Source of the user guide |
+| `enslyonstage.pdf` | Compiled user guide |
+| `enslyonstage-gabarit.tex` | Blank report template (start here) |
+| `enslyonstage-exemple.tex` | Source of the visual demonstration |
+| `enslyonstage-exemple.pdf` | Compiled visual demonstration — based on a real M1 report ([Mbaye 2026, Zenodo](https://doi.org/10.5281/zenodo.21631816)), not a model for scientific content |
+| `references.bib` | Sample bibliography for `enslyonstage-gabarit.tex` |
+| `skipping_ref.bib` | Bibliography for `enslyonstage-exemple.tex` |
+| `figures/` | Screenshots for the user guide + figures used in the demonstration |
+| `logos/` | ENS de Lyon branding assets (banners, logos) |
+| `LICENSE` | LPPL 1.3c licence text |
 
 ## Colour themes (22)
 

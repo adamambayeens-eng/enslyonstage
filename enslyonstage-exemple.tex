@@ -1,9 +1,14 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%  enslyonstage-exemple.tex — FULL EXAMPLE of a completed ENS internship report
+%  enslyonstage-exemple.tex — VISUAL DEMONSTRATION of a completed ENS internship report
 %
-%  ⚠  This file is for REFERENCE only.
-%     To write your own report, open and edit  enslyonstage-gabarit.tex  instead.
-%     Copy-paste sections from here as needed.
+%  ⚠  PURPOSE: this file shows what a finished report looks like when typeset
+%     with the enslyonstage class (layout, fonts, figures, bibliography, etc.).
+%     It is NOT a model for scientific writing, methodology, or content.
+%     To write your own report, open  enslyonstage-gabarit.tex  instead.
+%
+%  The text and figures are taken from a real M1 Biosciences internship report
+%  (Zenodo: https://doi.org/10.5281/zenodo.21631816) solely to produce a
+%  realistic-looking PDF.  Do not use the scientific content as a reference.
 %
 %  Uses the enslyonstage.cls class
 %
@@ -11,13 +16,13 @@
 %    enslyonstage-gabarit.tex ← YOUR blank template (start here)
 %    enslyonstage-exemple.tex ← this file (full worked example)
 %    enslyonstage.cls         ← class file (same directory or on TEXMFHOME)
-%    references.bib           ← BibTeX bibliography
+%    skipping_ref.bib         ← bibliography for this example
 %    figures/                 ← images (jpg, pdf, png, eps …)
 %    logos/                   ← hautdepage.pdf  basdepage.pdf  Master.jpg
 %                                logo_ens.pdf  (+ logo_labo.* optional)
 %
 %  Compile order:
-%    pdflatex enslyonstage-exemple  →  biber enslyonstage-exemple  →  pdflatex
+%    pdflatex enslyonstage-exemple  →  biber enslyonstage-exemple  →  pdflatex ×2
 %  On Overleaf: compilation is automatic (biber is used by default).
 %
 %  Final PDF file name (ENS requirement):
@@ -57,68 +62,73 @@
 % Available (22): orange (default) · violet · blue · red · green · teal · gray
 %                 navy · azure · indigo · midnight · slate · purple · pink
 %                 crimson · wine · amber · gold · brown · lime · forest · cyan
-\documentclass[orange]{enslyonstage}
+\documentclass[blue]{enslyonstage}
+
+% ── HYPHENATION (optional) ─────────────────────────────────────────────────
+\hyphenation{hypo-gra-vi-ty quadru-pe-dal skip-re-la-ted light-wei-ght
+             Shevt-sova me-ta-tar-sal hind-limb mul-ti-di-men-sio-nal}
+
+% ── LINE BREAK PENALTIES (optional) ────────────────────────────────────────
+% Discourage line breaks inside math expressions
+\relpenalty=10000
+\binoppenalty=10000
 
 % ── BIBLIOGRAPHY ───────────────────────────────────────────────────────────
 % Bibliography resource (biblatex — compiled with biber, automatic in Overleaf)
-% Create a references.bib file with your citations
-\addbibresource{references.bib}
+\addbibresource{skipping_ref.bib}
 
-% ── CUSTOM SHORTCUTS ───────────────────────────────────────────────────────
-% Define frequently-used units as shortcuts to save typing
-\newcommand{\um}{\si{\micro\metre}}       % \um   → µm
-\newcommand{\uM}{\si{\micro\Molar}}       % \uM   → µM
-\newcommand{\degC}{\si{\degreeCelsius}}   % \degC → °C
+% Compress author lists to "First Author et al." in citations
+\ExecuteBibliographyOptions{maxcitenames=1, mincitenames=1}
+
+% ── CUSTOM UNIT SHORTCUTS (optional) ───────────────────────────────────────
+% Define frequently-used units as shortcuts to save typing.
+% Add your own following the same pattern.
+\newcommand{\um}{\unit{\micro\metre}}       % \um   → µm
+\newcommand{\uM}{\unit{\micro\Molar}}       % \uM   → µM
+\newcommand{\degC}{\unit{\degreeCelsius}}   % \degC → °C
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%  METADATA
-%  Fill in your report information below. These commands populate the cover
-%  page, headers, footers, and PDF metadata.
+%  METADATA  —  fill in every field below
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % ── TITLE ──────────────────────────────────────────────────────────────────
-% ENS requirement: maximum 125 characters including spaces
-% Should capture the conceptual significance for a broad audience
-%
-% TIP — title with a line break: use \texorpdfstring so hyperref metadata
-% (PDF title, bookmarks) still receives a plain-text version:
-%   \titre{First Part:\texorpdfstring{\\}{ }Second Part of the Title}
-%
-\titre{Characterisation of a Novel Protein Complex Involved in Post-Transcriptional
-	Regulation During Cellular Stress Response}
+% ENS requirement: maximum 125 characters including spaces.
+% To force a line break in the title without breaking PDF metadata, use:
+%   \titre{First part:\texorpdfstring{\\}{ }Second part}
+\titre{From Trot to Skip:\texorpdfstring{\\}{ }%
+    Mice Adopt Human-like Hypogravity Gait in a Lunar Gravity Harness}
 
 % ── AUTHOR ─────────────────────────────────────────────────────────────────
-% Your name as it should appear on the cover page
-% Use \textsc{} for small caps on last name
-\auteur{Firstname \textsc{Lastname}}
+% Use \textsc{} for small caps on last name: Firstname \textsc{Lastname}
+\auteur{Adama \textsc{Mbaye}}
 
 % ── DEGREE LEVEL ───────────────────────────────────────────────────────────
-% Enter either "M1" or "M2" (without "Biosciences" — added automatically)
+% Enter "M1" or "M2" (without "Biosciences" — added automatically)
 \master{M1}
 
 % ── BIOLOGICAL DOMAIN ──────────────────────────────────────────────────────
-% Shown on cover page and in footer
+% Shown on cover page and in footer.
 % Examples: Molecular and Cellular Biology, Neurosciences, Ecology, etc.
-\domaine{Molecular and Cellular Biology}
+\domaine{Biomechanics}
 
 % ── INTERNSHIP DATES ───────────────────────────────────────────────────────
 % Format: DD Month YYYY (e.g., 02 February 2025)
-\datedebut{02 February 2025}
-\datefin{30 June 2025}
+\datedebut{09 February 2026}
+\datefin{17 July 2026}
 
 % ── LABORATORY ─────────────────────────────────────────────────────────────
 % Laboratory name and/or institute
 % Example: Lab Name, Institute Name, CNRS UMR XXXX, City
-\laboratoire{
-    Laboratory of RNA Biology,
-    Montpellier, France
+\laboratoire{%
+    \textsc{Max Delbrück Center for Molecular Medicine}, Berlin, Germany
     }
 
 % ── SUPERVISORS ────────────────────────────────────────────────────────────
-% Lab supervisor (internship mentor) — name and email
-\tuteurstage{Dr. Jane Smith}{} % No email in the official
-% ENS academic supervisor — name and email
-\tuteurENS{Prof. Jean Dupont}{jean.dupont@ens-lyon.fr} % not shown
+% Lab supervisor (internship mentor) — name and email (email not shown on PDF)
+\tuteurstage{Dr. N. \textsc{Zampieri}}{}
+% ENS academic supervisor — name and email (email not shown on PDF)
+\tuteurENS{Dr. J. \textsc{Derr}}{}
 
 % ── ABSTRACT ───────────────────────────────────────────────────────────────
 % ENS requirements:
@@ -129,24 +139,31 @@
 %     extensive detail, (3) summary of significance
 %   - Keep accessible to non-specialists
 \abstracts{%
-	Write your abstract here. Single paragraph, 150–200 words, English.
-	No literature references permitted. Include: (1)~brief biological background
-	and question addressed, (2)~description of main results without extensive
-	experimental detail, (3)~summary of significance. Keep language accessible
-	to non-specialists.
-	\lipsum[1][1-5]
-	% ── VISUAL ABSTRACT (optional) ─────────────────────────────────────────
-	% Place a graphical abstract (figure, scheme, workflow…) below the text.
-	% The optional argument sets the width (default: 0.9\textwidth).
-	% Use any image format accepted by \includegraphics.
-	\abstractimage[0.5\textwidth]{example-image}
+Human astronauts on the lunar surface spontaneously skip rather than walk or
+run, driven by the six-fold reduction in gravitational loading. Whether
+quadrupeds display an analogous locomotor reorganisation under hypogravity is
+unknown. Here we simulated lunar gravity ($\approx 16.5\%\,g$) in
+treadmill-running mice using a custom elastic harness, and characterised the
+resulting gait with markerless motion capture and comprehensive kinematic
+analysis. We first located the center of mass at 50.8\% of body length,
+providing a geometric basis for harness placement. Under simulated lunar
+gravity, mice displayed several hallmarks of skipping: a 2.5-fold increase in
+bilateral aerial time, a near-doubling of stride-to-stride cycle irregularity,
+threefold increases in hindlimb paw lift and base of support, and a significant
+elevation of the energy recovery ratio. Inter-limb phase coordination was
+globally disrupted, with all three coupling directions showing significantly
+reduced phase concentration under hypogravity. An unbiased multiple factor
+analysis of 104 locomotor parameters confirmed fully distinct locomotor states
+($R^2 = 0.638$, $p = 0.001$). These results provide the first evidence that a
+skip-like gait is not unique to bipeds but is an emergent quadrupedal response
+to reduced gravitational loading.%
 }
 
 % ── KEYWORDS ───────────────────────────────────────────────────────────────
 % ENS guideline: 5 to 8 keywords
 % Comma-separated list of key terms for your work
-\keywords{RNA-binding proteins, stress granules, post-transcriptional regulation,
-	proteomics, yeast two-hybrid}
+\keywords{hypogravity, locomotion, skipping, gait, mouse, spring-mass model,
+    partial weight-bearing}
 
 % ── WORD COUNT ─────────────────────────────────────────────────────────────
 % ENS limits: M1 ≤ 5000 words (±10%)  /  M2 ≤ 4000 words (±10%)
@@ -154,16 +171,16 @@
 % On Overleaf: Menu → Word Count  (the %TC: directives in enslyonstage.cls
 %              automatically exclude figure captions and table environments)
 % Locally:  texcount -sum -1 enslyonstage-exemple.tex
-\nombredemots{6 767}
+\nombredemots{4676}
 
 % ── PREVIOUS INTERNSHIPS ───────────────────────────────────────────────────
 % Table of previous internships shown on cover page
 % Use \stagerow{Year}{Lab, City, Country}{Supervisor}{Topic}
 % Leave empty fields for levels not yet completed (e.g., M2 if you're in M1)
 \stagesanterieurs{
-	\stagerow{L3}{Lab name, City, Country}{Dr.\ Firstname \textsc{Lastname}}{Biological topic}
-	\stagerow{M1}{Lab name, City, Country}{Dr.\ Firstname \textsc{Lastname}}{Biological topic}
-	\stagerow{M2}{}{}{}
+    \stagerow{L3}{Institut Lumière-Matière, Lyon}{O. \textsc{Cochet-Escartin}}{Biophysics of Wnt Pathway}
+    \stagerow{M1}{Max Delbrück Center, Berlin}{N. \textsc{Zampieri}}{Locomotion in Hypogravity Simulation in Mice}
+    \stagerow{M2}{}{}{}
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -184,7 +201,7 @@
 % ── LABORATORY LOGO ────────────────────────────────────────────────────────
 % Shown on cover page between domain and info block (optional)
 % Remove or comment out if not needed
-\logoLabo[3cm]{example-image}
+\logoLabo[2.5cm]{logos/MDC_logo.pdf}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %  HEADER / FOOTER CUSTOMIZATION (optional)
@@ -218,11 +235,6 @@
 % Must be called immediately after \fairepagedegarde
 \faireabstract
 
-% ── TABLE OF CONTENTS ──────────────────────────────────────────────────────
-% Optional — remove if not required by your tutor
-% Shows sections, subsections, and subsubsections
-\tableofcontents
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Introduction}
 \label{sec:intro}
@@ -234,13 +246,89 @@
 %   - End with clear statement of the question(s) addressed in the report
 %   - Define non-standard abbreviations at first use
 
-% TIP — drop cap on the first letter of the introduction:
-%   \lettrine[lines=3]{T}{he} context of this study...
-%   The lettrine package is already loaded by enslyonstage.cls.
 \paragraph{}
-\lipsum[1-4]
+\lettrine[lines=3]{O}{n} April 1, 2026, the Artemis~II mission carried four
+astronauts on a ten-day journey around the Moon --- the first crewed flight
+beyond low Earth orbit since Apollo~17 in 1972, and the opening act of a
+planned era of sustained human presence on the lunar surface. As agencies
+prepare for crews who will live and move under lunar gravity
+($g_\text{Moon} \approx 0.16\,g_\text{Earth}$), a basic biological question
+becomes urgent: how does the locomotor system reorganise in a gravitational
+environment so different from the one in which it evolved?
 
-% \newpage
+The mechanics of legged locomotion are deeply governed by gravity. Two
+fundamental mechanisms dominate. In walking, the body vaults over a relatively
+stiff supporting limb --- an inverted-pendulum mechanism --- exchanging
+gravitational potential energy (tied to height) and kinetic energy (tied to
+speed) out of phase to minimise muscular
+work\cite{lacquanitiHumanLocomotionHypogravity2017a}. In running and trotting,
+the centre of mass bounces like a pogo-stick: potential and kinetic energy vary
+in phase while elastic energy is transiently stored and returned by muscles and
+tendons\cite{lacquanitiHumanLocomotionHypogravity2017a}. In both cases,
+gravitational acceleration sets the characteristic timescales: it determines
+preferred stride frequencies, optimal speeds, and ground reaction force
+magnitudes. Reducing gravity does not simply make movement easier; it
+fundamentally rescales every mechanical relationship that governs coordination
+and stability.
+
+This sensitivity is dramatically illustrated by the behaviour of Apollo
+astronauts on the lunar surface. At low to moderate speeds, they spontaneously
+adopted skipping rather than walking or
+running\cite{minettiBiomechanicsSkippingGaits1998,paveiSkippingVsRunning2015}.
+Skipping is a bilaterally asymmetric gait in which a walking-like
+double-support phase alternates with a running-like aerial phase, and in which
+one leading limb consistently produces a longer stride than the trailing limb,
+resulting in a characteristic long-short cycle
+alternation\cite{minettiBiomechanicsSkippingGaits1998}. The name is doubly
+literal: one skips off the ground, and skips over the alternation --- each
+limb taking two consecutive beats (\mbox{L--L--R--R}) rather than alternating
+at every step (\mbox{L--R--L--R}). Crucially, skipping simultaneously exploits
+both the pendulum-like and elastic energy-saving mechanisms, making it the
+mechanically optimal gait in reduced
+gravity\cite{minettiBiomechanicsSkippingGaits1998}. Whether an analogous gait
+reorganisation occurs in quadrupeds under similar gravitational conditions is
+entirely unknown.
+
+In quadrupeds, gait is characterised by the inter-limb phase relationships
+within a stride cycle\cite{dannerSpinalControlLocomotion2023} (the normalised
+delay between two limbs' touchdowns: $0 =$ synchrony, $0.5 =$ perfect
+alternation). The trot, the preferred attractor gait of mice at moderate
+speeds, is defined by anti-phase coupling between left and right hindlimbs
+($\phi_\text{HL} \approx 0.5$) and in-phase coupling between diagonal pairs
+($\phi_\text{diag} \approx 0$)\cite{dannerSpinalControlLocomotion2023}. The
+bound is equally well defined: both hindlimbs move in synchrony
+($\phi_\text{HL} \approx 0$) and both forelimbs in synchrony, with a
+half-cycle offset between fore and hind pairs.
+
+To study hypogravity locomotion without access to space, researchers have
+developed ground-based partial weight-bearing (PWB) systems. Early designs
+relied on tail suspension, which restricts natural quadrupedal locomotion and
+redistributes load toward the
+forelimbs\cite{mortreuxApproachingGravityContinuum2020}. Subsequent
+spring-based harnesses improved range of motion but suffered from daily drift
+in unloading\cite{mortreuxApproachingGravityContinuum2020}. Chain-based pelvic
+systems offer greater stability at the cost of bulk that may constrain joint
+mobility\cite{mortreuxApproachingGravityContinuum2020}. Custom-fitted jacket
+harnesses worn by rodents provide a naturalistic
+option\cite{mortreuxApproachingGravityContinuum2020}, while the MARS
+centrifuge aboard the ISS remains the only true partial-gravity platform but is
+severely limited by cost and sample size\cite{shibaDevelopmentNewExperimental2017}.
+Crucially, most of these systems were designed to study long-term
+musculoskeletal outcomes (bone density, muscle atrophy) rather than
+fine-grained locomotor kinematics, and none has been used to ask whether
+quadrupeds adopt a skip-like gait under hypogravity.
+
+Here we use a custom lightweight harness system to simulate lunar gravity in
+freely running mice on a treadmill. We first determine the anteroposterior
+center of mass position to validate harness placement, then characterise the
+resulting locomotor phenotype using markerless motion capture and a
+comprehensive kinematic analysis. We show that mice exposed to simulated lunar
+gravity spontaneously display a gait reorganisation with multiple features of
+human skipping: extended bilateral aerial phases, loss of hindlimb antiphase
+coupling, increased stride irregularity, and greater hindlimb clearance. These
+results provide the first evidence that a skip-like gait is not unique to
+bipeds but is an emergent locomotor response to reduced gravity that also
+manifests in quadrupeds.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Materials and Methods}
@@ -253,24 +341,144 @@
 %
 % Organize with \paragraph{} headings for each experimental approach
 
-\paragraph{Cell culture and strains.}
-\lipsum[1][1-4]
+\paragraph{Animals.}
+All experiments were performed on adult mice of the
+\textit{PV}\textsuperscript{\textit{cre}};\textit{Rx3}\textsuperscript{\textit{flpo}};\textit{Mapt}\textsuperscript{dsDTR};Ai65D
+genotype. At the time of the locomotion recordings (day 0), no diphtheria toxin
+had been administered and animals exhibited a fully wild-type locomotor
+phenotype\cite{santuzWalkingMoonHypogravity2026}. Eight mice were used for the
+center of mass determination experiment and seven mice for the treadmill
+locomotion experiment, in which each animal was recorded in both the Earth and
+Moon conditions (within-subject design). All procedures were conducted in
+accordance with institutional animal care and use
+guidelines\cite{santuzWalkingMoonHypogravity2026}.
 
-\paragraph{Plasmid construction.}
-\lipsum[2][1-4]
+\paragraph{Center of mass determination.}
+Following euthanasia, animals were positioned in a standardised running posture
+--- one diagonal limb pair extended, the contralateral pair flexed --- and
+maintained in this configuration during rigor mortis. Specimens were stored at
+\qty{-80}{\degreeCelsius} and handled in a cold room at \qty{4}{\degreeCelsius}
+to limit tissue warming during analysis. Each frozen specimen was suspended from
+a fixed overhead anchor via the tail-base strap of the harness, which was
+clamped at successive positions along the dorsal strap at \qty{0.5}{\centi\metre}
+intervals. At each position, the animal was allowed to reach static equilibrium
+and a photograph was taken (\textit{Samsung Galaxy Z Flip 5};
+\qty{50}{\centi\metre} fixed distance; 2× zoom to reduce peripheral
+distortion). Images were analysed in \textit{Fiji} (\textit{ImageJ} v1.54p): a
+reference segment was drawn along the body long axis and a perpendicular from
+the suspension point onto this reference; the tilt angle and the normalised
+suspension position were recorded. The anteroposterior CoM was estimated by
+linear regression restricted to the central portion of the curve
+($0.35 \leqslant x \leqslant 0.70$ of normalised body length), and the
+zero-crossing of the fitted line was taken as the CoM position. A mass-based
+lookup table was derived by regressing body length against body mass.
 
-\paragraph{Protein extraction and western blotting.}
-\lipsum[3][1-4]
+\paragraph{Locomotion experiment.}
+Mice ran on a motorised treadmill at \qty{30}{\centi\metre\per\second} wearing
+a custom suspension harness consisting of a commercially available soft Velcro
+jacket (\textit{Butterfly Mouse Harness}, Lomir Biomedical Inc.,
+Notre-Dame-de-l'Île-Perrot, QC, Canada) connected via a dorsal midline strap
+to a tail-base wrap, with a solid silicone elastic cord
+(\textit{HokoFLEX}\textsuperscript{\textregistered}, \qty{1}{\milli\metre}
+nominal diameter, \qty{60}{Shore~A}; HOKOSIL\textsuperscript{\textregistered}
+Elastomertechnik GmbH, Bredenbek, Germany) providing vertical
+suspension\cite{santuzWalkingMoonHypogravity2026}. In the Earth condition, the
+elastic element was slack. In the Moon condition, the cord was pre-tensioned to
+exert an upward force equal to 83.5\% of body weight, reducing effective
+gravity to approximately $g_\text{Moon} = 16.5\%\,g_\text{Earth}$. Full-body
+kinematics were captured at \qty{250}{\hertz} using lateral high-speed cameras
+and processed with \textit{DeepLabCut~v2.3.9}\cite{mathisDeepLabCutMarkerlessPose2018}
+to extract anatomical landmarks including toe tips, metatarsal joints, knee,
+hip, iliac crest, scapula, and tail base.
 
-\paragraph{Co-immunoprecipitation.}
-\lipsum[4][1-4]
+\paragraph{Center of mass reconstruction and energy analysis.}
+The whole-body CoM was approximated as the centroid of three landmarks (tail
+base, right iliac crest, and scapula), low-pass filtered at \qty{10}{\hertz}
+(zero-phase Butterworth, order 4)\cite{signaldevelopersSignalSignalProcessing2023}.
+All other kinematic signals (joint angles, toetip and metatarsal trajectories)
+were filtered at \qty{20}{\hertz} with the same filter design. Velocity and
+acceleration were obtained by numerical
+differentiation\cite{borchersPracmaPracticalNumerical2011}. The dominant
+oscillation frequency was identified as the spectral peak in the
+\qtyrange{1.5}{20}{\hertz} band of the Welch power spectral density of the
+vertical CoM position. Effective gravity was estimated as the mean absolute
+vertical acceleration of the CoM during aerial phases (all four paws
+simultaneously off the ground), retaining only phases that contained at least
+one acceleration minimum to exclude spuriously brief events.
+The energy recovery ratio $ER$ was computed following
+\citeauthor{cavagnaSourcesExternalWork1976}\cite{cavagnaSourcesExternalWork1976}
+as
 
-\paragraph{Mass spectrometry.}
-\lipsum[5][1-4]
+\begin{equation}
+    ER = \frac{\Delta E_p + \Delta E_k - \Delta E_\text{tot}}{\Delta E_p + \Delta E_k}
+    \label{eq:er}
+\end{equation}
 
-\paragraph{Statistical analysis.}
-% ENS requirement: specify test, sample size n, and exact p-value for each result
-\lipsum[6][1-4]
+\noindent where $E_p = mgy_\text{CoM}$ is the gravitational potential energy,
+$E_k = \tfrac{1}{2}m(v_x^2 + v_y^2)$ the kinetic energy of the CoM,
+$E_\text{tot} = E_p + E_k$ the total mechanical energy, and
+$\Delta X = \sum \max(\Delta X_i, 0)$ denotes the sum of positive increments of
+quantity $X$ over one stride.
+
+\paragraph{Gait cycle analysis.}
+Touchdown and liftoff events were extracted from the vertical toetip
+trajectories. The right hindlimb served as the gait-cycle reference; inter-limb
+phases were defined as the normalised timing of each limb's first touchdown
+within the reference cycle window. Circular statistics (mean direction and
+Rayleigh concentration $\bar r$) were computed
+analytically\cite{mardiaDirectionalStatistics1999}.
+The Consecutive Cycle Irregularity was computed as
+
+\begin{equation}
+    \text{CCI} = \frac{\langle\, |T_{n+1} - T_n| \,\rangle}{\langle T \rangle}
+    \label{eq:cci}
+\end{equation}
+
+\noindent where $T_n$ is the duration of the $n$-th stride cycle,
+$\langle \cdot \rangle$ denotes the mean over all strides, and $|\cdot|$ the
+absolute value. A high CCI indicates strongly alternating long and short
+strides, as expected during skipping.
+
+Paw lift was computed as the time-integral of hindlimb toetip clearance above
+its swing-phase minimum, normalised by hindlimb length:
+
+\begin{equation}
+    \mathrm{Paw\, Lift} = \frac{1}{L_\text{leg}}
+    \int_{t_\text{lo}}^{t_\text{td}}
+    \bigl(y_\text{toe}(t) - y_\text{min}^\text{sw}\bigr)\, dt
+    \label{eq:pl}
+\end{equation}
+
+\noindent where $t_\text{lo}$ and $t_\text{td}$ are the liftoff and subsequent
+touchdown times of the hindlimb, $y_\text{toe}(t)$ is the vertical toetip
+position, $y_\text{min}^\text{sw} = \min_t y_\text{toe}(t)$ its minimum during
+the swing phase, and $L_\text{leg} = L_\text{femur} + L_\text{tibia}$.
+
+\paragraph{Multivariate analysis.}
+For each lower-limb joint (hip, knee, ankle, MTP), the joint angle per stride
+was normalised to $[0, 1]$ within each recording; four statistics were
+extracted from the resulting Poincaré return map: short-axis SD
+$\mathrm{SD}_1$ (consecutive-cycle angle variability), long-axis SD
+$\mathrm{SD}_2$ (overall angle variability), and the mean current-cycle and
+next-cycle normalised angles, yielding 16 stride-regularity parameters in
+total\cite{brennanExistingMeasuresPoincare2001}.
+104 locomotor parameters grouped into eight variable families were submitted to
+Multiple Factor Analysis\cite{escofierMultipleFactorAnalysis1994,leFactoMineRPackageMultivariate2008}.
+The significance of condition separation was assessed by
+PERMANOVA\cite{andersonNewMethodNonparametric2001,oksanenVeganCommunityEcology2001}
+on Euclidean distances in MFA space (999 permutations). Univariate comparisons
+used linear mixed models with mouse as a random intercept; $p$-values were
+corrected by the Benjamini–Hochberg procedure.
+
+\paragraph{Statistics.}
+Unless otherwise stated, group comparisons used linear mixed-effects models
+with mouse identity as a random intercept, fitted by maximum
+likelihood\cite{batesFittingLinearMixedEffects2015}, with Holm-corrected
+post-hoc pairwise contrasts\cite{lenthEmmeansEstimatedMarginal2017}. Circular
+data were compared with the Watson-Williams
+test\cite{mardiaDirectionalStatistics1999} applied to per-mouse mean phases.
+Bounded variables were logit-transformed prior to modelling. Effect sizes are
+reported as Cohen's~$d$. All analyses were conducted in \textit{R~(v4.6.0)}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Results}
@@ -287,8 +495,27 @@
 %   - Use \FloatBarrier after each subsection to control figure placement
 %   - Legends must be self-sufficient (understandable without reading main text)
 
-\paragraph{}
-\lipsum[1]
+\subsection{The center of mass of mice falls at mid-body and is insensitive to body mass}
+
+Effective hypogravity simulation requires that the elastic restoring force be
+applied directly above the animal's center of mass (CoM): any anteroposterior
+offset introduces a torque that tilts the body during locomotion. The harness
+used in this study (\autoref{fig:fig1}A) consists of a Velcro thoracic vest
+securing the forelimbs, linked by a dorsal midline strap to a tail-base wrap;
+the elastic element attaches to this strap at an adjustable anteroposterior
+position, providing a practical degree of freedom for CoM targeting.
+
+To locate the CoM experimentally, we suspended frozen mice postured in a
+standardised running configuration from successive positions along the dorsal
+strap (\autoref{fig:fig1}B) and recorded the equilibrium tilt angle at each
+point. The zero-crossing, which locates the CoM, was remarkably consistent
+across animals and fell at $50.8\%$ of total body length from the tail base
+(\autoref{fig:fig1}C). Body length scaled significantly with mass
+(\autoref{fig:fig1}D), allowing us to derive a lookup table that maps mass to
+expected CoM position (\autoref{fig:fig1}E). Over the full range of body masses
+encountered in the colony (18--30\,g), the absolute CoM position changes by
+only \qty{5}{\milli\metre} --- confirming that a single standardised attachment
+suffices across animals.
 
 %-----------------------------------------------------------------------------
 %  FIGURE INSERTION — \insererfigure
@@ -302,120 +529,210 @@
 %    w=<dim> — custom image width (overrides h)
 %
 %  Default (no options): double-column figure [!htb], h=0.33\textheight
-%
-%  Examples:
-%    \insererfigure{file.png}{Caption text}{fig:label}
-%       → double-column, default height
-%    \insererfigure[col]{file.png}{Caption}{fig:label}
-%       → single-column, width=\linewidth
-%    \insererfigure[w=0.6\textwidth]{file.png}{Caption}{fig:label}
-%       → double-column, custom width
-%    \insererfigure[p,w=0.85\textwidth]{file.png}{Caption}{fig:label}
-%       → full-page float
 %-----------------------------------------------------------------------------
 
+% Figure 1 — full page, custom width
+\insererfigure[p, w=0.95\linewidth]{figures/fig1.pdf}%
+{%
+\textbf{The center of mass of mice falls reproducibly at mid-body.}
+(\textbf{A})~The custom suspension harness, consisting of a Velcro thoracic
+vest attached to a tail-base wrap by a dorsal midline strap.
+(\textbf{B})~Sagittal view of a mouse in a running posture suspended from the
+dorsal strap; the tilt angle and normalised pickup position are indicated.
+(\textbf{C})~Equilibrium tilt angle \textit{vs.}\ normalised pickup-point
+position ($n = 8$ animals); the zero-crossing at $\overline{\mathrm{CoM}}
+= 50.8\%$ of body length identifies the center of mass.
+(\textbf{D})~Body length \textit{vs.}\ body mass (linear regression:
+$R^2 = 0.461$, $p < 0.001$; $n = 24$ animals).
+(\textbf{E})~Lookup table relating body mass to predicted CoM distance from
+the tail base (mean~$\pm$~SD). Over the full mass range, the CoM position
+shifts by only \qty{5}{\milli\metre}.%
+}{fig:fig1}
 
-\subsection{Identification of interaction partners}
+\subsection{The elastic harness produces a genuine hypogravity perturbation without perturbing stride mechanics}
 
-% Figure 1 — double column (default, spans both columns)
-% ENS guideline: include figures as small as possible without losing clarity
-% Legend must be self-sufficient (no need to read the main text to understand it)
-\insererfigure[w=0.6\textwidth]%
-{example-image}%
-{\textbf{Identification of proteins co-purifying with the bait.}
-	(\textbf{A})~Schematic of the pull-down strategy.
-	(\textbf{B})~Volcano plot ($n = 3$ biological replicates); dashed lines:
-	$p < 0.05$ and fold-change $\geq 2$ (log$_2$ scale).
-	(\textbf{C})~Validation by co-IP; Input~(I), flow-through~(FT), eluate~(E).
-	Scale bar~= 10\,\um. Data are mean~$\pm$~SD.
-	See also \autoref{fig:network}.}%
-{fig:pulldown}
+Seven mice were recorded on a treadmill at \qty{30}{\centi\metre\per\second}
+in two within-subject conditions: unsuspended (\textit{Earth}) and suspended at
+83.5\% of body weight to simulate lunar gravity (\textit{Moon},
+$g_\text{Moon} \approx 16.5\%\,g_\text{Earth}$). The vertical CoM oscillated
+rhythmically at the stride frequency in both conditions (\autoref{fig:fig2}A);
+neither the peak-to-peak excursion, positional variability, nor dominant
+oscillation frequency differed significantly between conditions
+(\autoref{fig:fig2}B--D). The oscillation frequency was approximately
+\qty{3.5}{\hertz} in both conditions, consistent with the expected trot stride
+rate at this speed, and well above the theoretical resonance frequency of the
+suspension system
+($f_0 = \tfrac{1}{2\pi}\sqrt{k/m} \approx \qty{2.1}{\hertz}$, with cord
+stiffness $k \approx \qty{4.3}{\newton\per\metre}$ and mouse mass
+$m \approx \qty{25}{\gram}$). Moon-suspended mice showed a significantly higher
+energy recovery ratio $ER$ than Earth controls (\autoref{fig:fig2}G,H) ---
+about two-thirds higher --- indicating a shift toward pendular energy exchange
+under hypogravity\cite{lacquanitiHumanLocomotionHypogravity2017a}.
 
-\lipsum[2-5]
+% Figure 2 — full page, custom width
+\insererfigure[p, w=0.95\linewidth]{figures/fig2.pdf}%
+{%
+\textbf{The elastic harness does not contaminate stride dynamics, yet reliably
+induces a hypogravity perturbation.}
+(\textbf{A})~Representative vertical CoM position trace from a Moon-suspended
+mouse. (\textbf{B}--\textbf{D})~Group statistics for peak-to-peak excursion,
+positional variability, and dominant CoM frequency ($n = 7$); none differed
+significantly. In all group-comparison panels: right half shows a kernel-density
+estimate (violin); left half shows a boxplot (median, IQR, whiskers); open
+circles are individual mice; filled circle and error bar are mean~$\pm$~SE.
+(\textbf{E})~Vertical CoM acceleration trace; yellow shading marks aerial
+phases.
+(\textbf{F})~Effective gravity $g_\text{eff}/g_\text{Earth}$ during aerial
+phases ($n = 7$); Moon-suspended mice experienced significantly lower effective
+gravity (linear mixed-effects model, Holm-corrected; $p < 0.05$).
+(\textbf{G})~Representative energy exchange trace.
+(\textbf{H})~Energy recovery ratio $ER$ ($n = 7$); Moon-suspended mice showed
+significantly higher $ER$ (linear mixed-effects model, logit-transformed,
+Holm-corrected; $p < 0.05$). Different letters: significant post-hoc
+differences ($\alpha = 0.05$).%
+}{fig:fig2}
 
-\FloatBarrier
+\subsection{Simulated lunar gravity disrupts inter-limb coordination}
 
-\subsection{Functional validation}
+To characterise gait at the level of individual limb timing, we tracked all
+four paws during locomotion (\autoref{fig:fig3}A) and quantified inter-limb
+phases using the right hindlimb (RH) as the reference. Under simulated lunar
+gravity, the mean inter-limb phase shifted significantly for all three couplings
+relative to Earth controls, as assessed by the Watson-Williams circular test
+applied per mouse (\autoref{fig:fig3}D). Phase consistency, measured by the
+Rayleigh concentration $\bar r$, was significantly reduced for all three
+couplings under hypogravity (\autoref{fig:fig3}E). The hindlimb coupling
+dropped most severely --- falling to less than half its Earth value under Moon
+conditions --- indicating a profound loss of left-right hindlimb synchrony.
 
-% Figure 2 — single column
-% Use [col] option to fit figure within one column
-\insererfigure[col]%
-{example-image}%
-{\textbf{Co-immunoprecipitation confirms the interaction \textit{in vivo}.}
-	Input~(I), flow-through~(FT) and eluate~(E) are shown.
-	Molecular weight markers (kDa) on the left.
-	Three independent experiments gave similar results\cite{Vincent2020}.}%
-{fig:coip}
+% Figure 3 — full page, narrower (portrait)
+\insererfigure[p, w=0.6\linewidth]{figures/fig3.pdf}%
+{%
+\textbf{Simulated lunar gravity disrupts inter-limb coordination.}
+(\textbf{A})~Experimental setup: mice ran at \qty{30}{\centi\metre\per\second}
+under Earth or Moon gravity while high-speed cameras recorded full-body
+kinematics\cite{santuzWalkingMoonHypogravity2026}.
+(\textbf{B})~Schematic illustrating the skip-like gait pattern: a regular trot
+(top) is replaced by a long-short stride alternation (bottom) when hindlimb
+phase coupling is disrupted\cite{santuzWalkingMoonHypogravity2026}.
+(\textbf{C})~Temporal stance diagrams for trot and bound reference gaits.
+(\textbf{D})~Inter-limb phase polar plots for three pairwise couplings under
+Earth (top) and Moon (bottom) ($n = 7$).
+(\textbf{E})~Rayleigh concentration $\bar r$ for all three couplings ($n = 7$).
+All three were significantly reduced under hypogravity (linear mixed-effects
+model, logit-transformed, Holm-corrected). Different letters: significant
+post-hoc differences ($\alpha = 0.05$).%
+}{fig:fig3}
 
-\lipsum[6-7]
+\subsection{Skip-like kinematic signatures are significantly elevated under hypogravity}
 
-\FloatBarrier
+Five independent kinematic metrics were elevated under hypogravity
+(\autoref{fig:fig4}). The bilateral aerial time was 2.5-fold greater in
+Moon-suspended mice ($7.0\%$ of stride cycle; \autoref{fig:fig4}A). The
+Consecutive Cycle Irregularity (CCI; \autoref{eq:cci}) was nearly twice as
+high in Moon-suspended mice ($32.4\%$; \autoref{fig:fig4}D). Normalised paw
+lift (\autoref{fig:fig4}E) was threefold greater under hypogravity, and base
+of support (\autoref{fig:fig4}F) was also threefold larger. A composite skip
+score aggregating nine kinematic variables drawn from
+\crefcolor{fig:fig2,fig:fig3,fig:fig4} --- each min-max normalised to $[0, 1]$
+across all animals and conditions --- was significantly higher in Moon-suspended
+mice (\autoref{fig:fig4}G).
 
-% Figure 3 — single column, custom height
-\insererfigure[col,h=0.28\textheight]%
-{example-image}%
-{\textbf{Stress-induced relocalization of the complex.}
-	Confocal images of GFP-tagged bait under basal conditions (left) and
-	after \SI{30}{\minute} treatment with \SI{1}{\milli\Molar}~\ce{H2O2} (right).
-	Scale bar~= \SI{5}{\micro\metre}. $n > 100$ cells per condition,
-	$p < 0.001$, Mann–Whitney $U$-test\cite{Journo2021}.}%
-{fig:localisation}
+% Figure 4 — full page (portrait)
+\insererfigure[p, w=0.85\linewidth]{figures/fig4.pdf}%
+{%
+\textbf{Skip-like kinematic metrics are all significantly elevated under
+hypogravity.}
+(\textbf{A})~Bilateral aerial time ($n = 7$). Individual mouse values are
+shown as dots; the donut chart arc represents the group mean. Significantly
+elevated under hypogravity (linear mixed-effects model, Holm-corrected;
+$p < 0.001$).
+(\textbf{B})~Left-right hindlimb swing asymmetry ($n = 7$); not significantly
+different between conditions.
+(\textbf{C})~Schematic illustrating CCI, paw lift, and base of support (BoS).
+(\textbf{D})~CCI, (\textbf{E})~paw lift, and (\textbf{F})~BoS ($n = 7$); all
+significantly elevated under hypogravity (Holm-corrected; $p < 0.05$).
+(\textbf{G})~Composite skip score ($n = 7$); significantly higher in
+Moon-suspended mice (logit-transformed, Holm-corrected). Different letters:
+significant post-hoc differences ($\alpha = 0.05$).%
+}{fig:fig4}
 
-\lipsum[8]
+\subsection{An unbiased multivariate analysis reveals a global locomotor reorganisation}
 
-\FloatBarrier
+All preceding analyses targeted pre-selected variables. To ask without prior
+hypothesis whether the Earth-Moon difference was confined to these variables or
+reflected a global reorganisation, we performed a Multiple Factor Analysis
+(MFA\cite{escofierMultipleFactorAnalysis1994}) on 104 locomotor parameters
+grouped into eight families (\autoref{tab:mfa_families}).
 
-\subsection{Structural characterisation}
-
-% Figure 4 — full page
-% [p] creates a dedicated float page with the figure alone
-% Useful for large, detailed figures
-\insererfigure[p,w=0.85\textwidth]%
-{example-image}%
-{\textbf{Interaction network of the identified complex.}
-	Nodes: proteins coloured by functional category.
-	Edge thickness: interaction score.
-	Outlined nodes: validated by $\geq 2$ independent methods.
-	$K_d = \SI{8.5e-9}{\Molar}$ (SPR, $n = 3$)\cite{Trizac2019}.
-	Visualised with Cytoscape~3.9.}%
-{fig:network}
-
-\lipsum[9-10]
-
-%-----------------------------------------------------------------------------
-%  TABLE — full-width (table*) and single-column (table)
-%
-%  Caption placement: ABOVE the tabular (biology convention)
-%  table*  — spans both columns (same as double-column figures)
-%  table   — single column
-%
-%  ENS display item limit: M1 ≤ 6 figures+tables  /  M2 ≤ 5 figures+tables
-%    → tables and figures share the same quota
-%-----------------------------------------------------------------------------
-
-\begin{table*}[!htb]
-  \centering
-  \caption{\textbf{Summary of identified interaction partners.}
-    Proteins co-purifying with the bait identified by mass spectrometry
-    ($n = 3$ biological replicates). Enrichment is expressed as log$_2$
-    fold-change (FC) over the control. $p$-values corrected by
-    Benjamini–Hochberg. nd, not detected in control.}
-  \label{tab:partners}
-  \small
-  \begin{tabular}{llccc}
-    \toprule
-    \textbf{Protein} & \textbf{Function} & \textbf{log$_2$ FC} & \textbf{Adj.\ $p$-value} & \textbf{Validation} \\
-    \midrule
-    ProteinA  & RNA-binding          & 4.2 & \num{1.3e-4} & co-IP, Y2H \\
-    ProteinB  & Stress granule       & 3.8 & \num{2.1e-4} & co-IP      \\
-    ProteinC  & Translation factor   & 2.9 & \num{8.3e-3} & Y2H        \\
-    ProteinD  & mRNA decay           & 2.4 & \num{1.2e-2} & ---         \\
-    ProteinE  & Scaffold/unknown     & 1.8 & \num{4.5e-2} & ---         \\
-    \bottomrule
-  \end{tabular}
+\begin{table*}[!ht]
+\footnotesize
+\centering
+\caption{\bf The eight variable families submitted to MFA ($n$ = number of
+    parameters per family).}
+\label{tab:mfa_families}
+\begin{tabular}{lrp{0.72\textwidth}}
+\toprule
+\textbf{Family} & $n$ & \textbf{Parameters} \\
+\midrule
+\textsc{Temporal}        & 28 & Per-limb cadence, stance and swing duration
+  (mean, SD, CV), and duty factor for all four limbs (\autoref{fig:fig5}) \\
+\midrule
+\textsc{Coordination}    &  7 & Inter-limb phases $\bar\phi$, Rayleigh
+  concentration $\bar r$, bilateral aerial time, and swing asymmetry
+  (\autoref{fig:fig3}, \autoref{fig:fig4}) \\
+\midrule
+\textsc{Trajectories}    & 30 & Per-limb step height, stride length, and paw
+  lift (mean and SD); stride-length ataxia coefficient; tail-base height
+  (\autoref{fig:fig4}, \autoref{fig:fig5}) \\
+\midrule
+\textsc{Poincaré}        & 16 & Stride-to-stride joint angle consistency via
+  Poincaré return maps for each lower-limb segment (\autoref{fig:fig5}) \\
+\midrule
+\textsc{Kinematics}      & 12 & Minimum, maximum, and range of motion of the
+  hip, knee, ankle, and MTP joints (\autoref{fig:fig5}) \\
+\midrule
+\textsc{Base of support} &  3 & Maximum, minimum, and range of convex-hull
+  stance area across stride cycles (\autoref{fig:fig4}) \\
+\midrule
+\textsc{CoM dynamics}    &  5 & $\Delta Y$, $\sigma(y_\text{CoM})$,
+  $f_\text{CoM}$, $g_\text{eff}$, and $ER$ (\autoref{fig:fig2}) \\
+\midrule
+\textsc{Morphometry}     &  3 & Body mass, femur length, and tibia length \\
+\bottomrule
+\end{tabular}
 \end{table*}
 
-\FloatBarrier
+Dimension~1 captured 46.2\% of total variance and Dimension~2 an additional
+17\%, together accounting for 63.2\% of all locomotor variability.
+PERMANOVA confirmed significant overall separation between groups
+($R^2 = 0.638$, $p = 0.001$), indicating that 63.8\% of all locomotor
+variability is attributable to whether the mouse ran on Earth or the Moon.
+Unbiased $k$-means clustering ($k = 2$) perfectly recovered the Earth and Moon
+groups without access to experimental labels. Of the 104 parameters tested, 75
+were significantly different between conditions (\autoref{fig:fig5}C).
+
+% Figure 5 — full page, custom width
+\insererfigure[p, w=0.95\linewidth]{figures/fig5.pdf}%
+{%
+\textbf{An unbiased multivariate approach shows that locomotion under simulated
+hypogravity is globally and specifically altered.}
+(\textbf{A})~MFA of 104 locomotor parameters projected onto Dimensions~1 and
+2; individual recordings are coloured by condition (Earth, blue; Moon, grey).
+Ellipses delineate the two $k$-means clusters. PERMANOVA:
+$R^2 = 0.638$, $F_{1,12} = 21.16$, $p = 0.001$.
+(\textbf{B})~Contribution of each variable family to Dimension~1; all
+locomotor families contributed equally (11--16\%), while morphometry
+contributed only 0.2\% (negative control).
+(\textbf{C})~Volcano plot of effect size (Moon $-$ Earth, Cohen's $d$)
+against corrected $-\log_{10}(p)$ for all 104 parameters. Points in red are
+significant after Benjamini–Hochberg correction; 75 out of 104 parameters
+were significantly different.
+(\textbf{D})~Hindlimb joint schematic.
+(\textbf{E})~Group comparison plots ($n = 7$) for the eight parameters with
+the largest significant effect sizes. Different letters: significant post-hoc
+differences ($\alpha = 0.05$, linear mixed-effects model, Holm-corrected).%
+}{fig:fig5}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Discussion}
@@ -431,164 +748,68 @@
 % defend your work, including negative results and limitations
 
 \paragraph{}
-\lipsum[12-14]
+The central finding of this study is that mice exposed to simulated lunar
+gravity spontaneously express a gait reorganisation with multiple features of
+the skipping observed in human astronauts under the same gravitational
+condition. Under hypogravity, mice displayed doubled stride irregularity,
+threefold increases in paw lift and base of support, elevated energy recovery,
+and a global loss of inter-limb phase coordination --- changes captured without
+prior hypothesis by an unbiased multivariate analysis separating the two
+conditions with an $R^2$ of 0.638. To our knowledge, this is the first
+demonstration that a skip-like gait emerges in a quadrupedal species under
+reduced gravity.
 
-\begin{table}[!htb]
-  \centering
-  \caption{\textbf{Strains used in this study.}
-    All strains are \textit{S.~cerevisiae} BY4741 background unless
-    otherwise stated.}
-  \label{tab:strains}
-  \small
-  \begin{tabular}{lcc}
-    \toprule
-    \textbf{Name} & \textbf{Genotype} & \textbf{Source} \\
-    \midrule
-    BY4741   & \textit{MATa his3$\Delta$1 leu2$\Delta$0} & \citeauthor{Vincent2020}, \citeyear{Vincent2020} \\
-    yFL001   & BY4741 \textit{protA-GFP::HIS3}           & This study         \\
-    yFL002   & BY4741 \textit{$\Delta$protB::KanMX}      & This study         \\
-    \bottomrule
-  \end{tabular}
-\end{table}
+\paragraph{Similarities and differences with human lunar skipping.}
+In humans, skipping under hypogravity is characterised by a persistent
+leading-limb asymmetry alongside increased stride irregularity and greater foot
+clearance\cite{minettiBiomechanicsSkippingGaits1998,paveiSkippingVsRunning2015}.
+Our data reproduce the irregular stride timing and increased paw clearance
+faithfully, but left-right hindlimb swing asymmetry did not reach significance
+in mice. This likely reflects a fundamental difference between bipedal and
+quadrupedal locomotion: in a biped, skipping requires a committed choice of
+leading limb, whereas a quadruped may distribute the asymmetry across both
+sides, diluting the signal at the group level.
 
-\TODO{Discuss limitations and propose follow-up experiments.}
+More broadly, the gravitational reduction renders energetics a poor predictor
+of gait choice: on the Moon, the metabolic costs of running, skipping, and
+hopping converge to near-Earth-walking
+values\cite{paveiSkippingVsRunning2015,paveiHoppingLocomotionDifferent2016},
+even though hopping is prohibitively expensive on Earth. This metabolic
+equivalence implies that the gait repertoire in hypogravity is shaped primarily
+by biomechanical constraints and neuromechanical timescales.
 
-% ── LaTeX reference examples (DELETE before submission) ─────────────────────
-\subsection*{LaTeX reference examples (delete before submission)}
+%\newpage
 
-Below are live examples of every useful construct for a biology report.
-Delete this entire subsection before submitting.
+\paragraph{Comparison of hypogravity simulation modalities.}
+The elastic suspension system used here belongs to a family of partial
+weight-bearing (PWB) devices, each presenting a distinct trade-off between
+mechanical fidelity, practicality, and impact on natural
+movement\cite{mortreuxApproachingGravityContinuum2020}. The custom
+Velcro-and-elastic harness used here is lightweight, minimally obstructive,
+and allows unrestricted quadrupedal locomotion without daily recalibration. Its
+main drawbacks are: Velcro degrades after approximately five to six
+experimental sessions; and the single-point overhead attachment provides no
+lateral stability. A neoprene construction and a triangular suspension geometry
+would address both limitations.
 
-\paragraph{Units (siunitx).}
+\paragraph{Limitations.}
+A systematic underestimation of $g_\text{eff}$ relative to theoretical
+predictions was observed in both conditions, a recognised limitation of
+reconstructing CoM dynamics from surface-landmark tracking during fast
+locomotion\cite{paveiEstimationAccuracy3D2017}. Because this bias affects
+both conditions equally, the statistically robust Earth-Moon difference in
+$g_\text{eff}$ remains a valid indicator of the relative change in
+gravitational loading.
 
-Speed: \SI{30}{\centi\metre\per\second} or \SI{30}{cm.s^{-1}}
-
-Cell diameter: \SI{10}{\micro\metre} (or 10\,\um).
-
-Protein concentration: \SI{200}{\micro\gram\per\milli\litre}.
-
-Reaction temperature: \SI{37}{\degreeCelsius} (or 37\,\degC).
-
-Centrifugation: \SI{1500}{\rpm} for \SI{10}{\minute} at \SI{4}{\degC}.
-% Note: \rpm is declared in enslyonstage.cls via \DeclareSIUnit{\rpm}{rpm}
-
-Wavelength: \SI{280}{\nano\metre} or \SI{280}{nm}.
-
-Molarity: \SI{5}{\milli\Molar} NaCl, \SI{2}{\micro\Molar} inhibitor (\uM).
-
-Range: \SIrange{50}{100}{\micro\litre}.
-
-\paragraph{Scientific notation.}
-
-Avogadro: \num{6.022e23}.
-
-Boltzmann: \num{1.38e-23}~J$\cdot$K$^{-1}$.
-
-Dissociation constant: $K_d = \SI{8.5e-9}{\Molar}$.
-
-Fold enrichment: \num{3.2}-fold increase.
-
-\paragraph{Chemical formulae (mhchem).}
-
-\begin{enumerate}
-	\item Hydrogen peroxide: \ce{H2O2}
-	\item Energy currency: \ce{ATP -> ADP + Pi}
-	\item Redox: \ce{NAD+ + H+ + 2e- -> NADH}
-	\item Ion: \ce{Ca^2+}, \ce{Mg^2+}
-	\item Radioisotope label: \ce{^{32}P}
-	\item Buffer: \SI{50}{\milli\Molar} \ce{NaH2PO4}, pH~7.4
-\end{enumerate}
-
-\paragraph{Statistics.}
-
-\begin{itemize}
-	\item All data are mean~$\pm$~SD ($n = 3$ biological replicates) unless stated
-	otherwise. Unpaired two-tailed Student's $t$-test: $p = 0.021$.
-	\item One-way ANOVA: $F(2,12) = 8.4$, $p = 0.005$, Tukey post-hoc.
-	\item Mann–Whitney $U$-test: $p < 0.001$.
-	\item Pearson correlation: $r = 0.95$, $p < 0.001$.
-	\item Effect size: $\geq 2$-fold (log$_2$ scale).
-	\item $n > 100$ cells per condition.
-\end{itemize}
-
-\paragraph{Gene and protein names.}
-
-\begin{description}
-	\item[Gene (yeast, italics)] \textit{cdc28}, \textit{act1}.
-	\item[Protein (yeast, roman)] Cdc28, Act1.
-	\item[Gene (human, italics caps)] \textit{BRCA1}, \textit{TP53}.
-	\item[Protein (human, roman caps)] BRCA1, p53.
-	\item[Mutant allele] \textit{ade2}$^{\Delta}$.
-	\item[Species] \textit{S.~cerevisiae}, \textit{E.~coli}, \textit{C.~elegans}.
-\end{description}
-
-\paragraph{Equations.}
-
-Michaelis--Menten:
-\begin{equation}
-    v = \frac{V_{\max}[S]}{K_m + [S]}
-    \label{eq:michaelismenten}
-\end{equation}
-
-% TIP — always add \noindent after a displayed equation if you want the
-% following sentence to continue the paragraph flush-left (no indent):
-\noindent where $V_{\max}$ is the maximal velocity and $K_m$ the substrate
-concentration at half-maximal velocity.
-
-Henderson--Hasselbalch:
-\begin{equation*}
-	\text{pH} = \text{p}K_a + \log\frac{[\text{A}^-]}{[\text{HA}]}
-\end{equation*}
-
-Beer--Lambert:
-\[
-	A = \varepsilon \cdot l \cdot c
-\]
-
-Hemoglobin Binding Model (cf. \autoref{eq:michaelismenten}):
-\begin{align}
-    \theta &= \frac{[L]^n}{K_d^n + [L]^n}
-             = \frac{1}{1 + \left(\dfrac{K_d}{[L]}\right)^{\!n}}
-    \label{eq:hill} \\[6pt]
-    \frac{d\theta}{dt} &= k_{on}[L]^n(1-\theta) - k_{off}\,\theta
-    \label{eq:hill-kinetics}
-\end{align}
-
-\paragraph{Cross-references.}
-
-% \autoref — single target, coloured (defined by enslyonstage.cls):
-See \autoref{fig:pulldown} for the pull-down results,
-\autoref{fig:coip}A,B for the co-IP validation,
-and \autoref{fig:network} for the full interaction network.
-Statistical methods are described in \autoref{sec:methods}.
-
-% \crefcolor — one or more targets, coloured (defined by enslyonstage.cls):
-% Useful when citing several figures at once: \crefcolor{fig:coip,fig:network}
-% Do NOT add \usepackage{cleveref} — it is already loaded by the class.
-See \crefcolor{fig:pulldown,fig:coip} for the pull-down and co-IP data.
-
-\paragraph{Bibliography citations (superscript coloured [n]).}
-As shown previously\cite{Vincent2020}, the complex assembles under stress.
-These results are consistent with independent reports\cite{Journo2021,Trizac2019}.
-For reviews, see\cite{AlazardDany2019,Goudemand2019,Escarguel2015}.
-
-% Citing with author name visible in text:
-%   following \citeauthor{Smith2020}\cite{Smith2020} as defined by...
-%   → "following Smith [3] as defined by..."
-
-\paragraph{Typography notes.}
-\textit{In vivo}, \textit{in vitro}, \textit{in situ} — always italics.
-
-Multiplication sign: $5 \times 10^{6}$ cells (never letter~x).
-
-Plus-minus: $12.3 \pm 0.4$~kDa.
-
-Approximately: $\approx \SI{300}{\nano\metre}$.
-
-Non-breaking space before units and references: \SI{10}{\um} (use \texttt{\textasciitilde}).
-
-En-dash for ranges: 10--20\,\um\ (two hyphens in source).
-% ────────────────────────────────────────────────────────────────────────
+\paragraph{Perspectives.}
+The present dataset characterises the immediate, neuromechanically intact
+response to hypogravity at day~0. The animals used here carry genetic tools for
+inducible selective ablation of specific neuronal populations, making it
+possible to ask which spinal circuits are required for the gravity-dependent
+gait reorganisation\cite{santuzWalkingMoonHypogravity2026}. A longitudinal
+design would also reveal whether the skip-like pattern is a stable attractor
+or a transient response --- a question with direct implications for predicting
+long-term locomotor adaptation during future lunar surface missions.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section*{Author Contributions}
@@ -599,15 +820,14 @@ En-dash for ranges: 10--20\,\um\ (two hyphens in source).
 %     or helped in the study
 %
 % Use initials matching those in author names above.
-% Example format: "F.L. designed and performed experiments X and Y..."
 
 \paragraph{}
-F.L.\ designed and performed all experiments, analysed the data, and wrote
-the manuscript.
-
-J.S.\ conceived the project, provided reagents and supervised the internship.
-
-J.D.\ provided academic supervision and critically revised the manuscript.
+A.M.\ performed all data analysis and statistical analyses, prepared all
+figures, and collected and analysed the center-of-mass suspension data.
+N.Z.\ supervised the project and reviewed and edited the manuscript.
+A.S.\ recorded the treadmill videos, performed markerless pose estimation, and
+assembled the landmark coordinate
+dataset\cite{santuzWalkingMoonHypogravity2026}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section*{Acknowledgements}
@@ -615,14 +835,15 @@ J.D.\ provided academic supervision and critically revised the manuscript.
 % Optional section to thank people who helped but are not listed in
 % Author Contributions (technical staff, facility managers, etc.)
 
-This report was typeset using a custom \LaTeX{} class developed for ENS de Lyon Biosciences internship reports.
+This report was typeset using a custom \LaTeX{} class developed for ENS de
+Lyon Biosciences internship reports. The original version of this report is
+archived on Zenodo: \url{https://doi.org/10.5281/zenodo.21631816}.
 
 %--- Bibliography — ≤ 35 references (ENS guideline) --------------------------
 % ENS requirements for bibliography:
 %   - Maximum 35 publications
 %   - PNAS numbered style: superscript [n] with colored hyperlinks
 %   - Range compression: [1-3] instead of [1,2,3]
-%   - Unpublished data / personal communications: cite in text only, NOT here
 %
 % Citation commands:
 %   \cite{key}           → superscript [1]
@@ -631,29 +852,6 @@ This report was typeset using a custom \LaTeX{} class developed for ENS de Lyon 
 % Balance columns on final page (makes last page look cleaner)
 \balance
 
-% Make sure references.bib contains all cited entries
 \biblio
-
-% ── SUPPLEMENTARY FIGURES ──────────────────────────────────────────────────
-% Place supplementary figures AFTER \biblio.
-% Usage: \inserersuppfig[<includegraphics options>]{<file>}{<caption>}{<label>}
-% The optional first argument overrides the default width=\textwidth.
-% Counter resets to S1, S2, … automatically.
-% Cross-reference with \autoref{supp:fig1} → "Supplemental Figure S1"
-
-\inserersuppfig{example-image}{%
-  \textbf{Representative confocal micrograph of GFP-tagged Ssa1 in control
-  cells.}
-  Cells expressing Ssa1-GFP were imaged by confocal microscopy (63× oil,
-  0.13\,\um/pixel). Scale bar: \SI{5}{\micro\metre}.
-  ($n = 50$ cells from three independent experiments.)%
-}{supp:fig1}
-
-\inserersuppfig[width=0.6\textwidth]{example-image}{%
-  \textbf{Western blot confirming equal loading.}
-  Total protein extract ($\SI{20}{\micro\gram}$ per lane) was separated by
-  SDS-PAGE and probed with anti-PGK1 as a loading control.
-  Molecular weight markers (kDa) are indicated on the left.%
-}{supp:fig2}
 
 \end{document}
